@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="anchor.mybatis.mapper.UserMapper">
+    <resultMap id="baseResultMap" type="anchor.mybatis.entity.User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="description" property="description"/>
+    </resultMap>
+
+    <sql id="baseColumnList">
+        id,name,age,description
+	</sql>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="anchor.mybatis.entity.User">
+        insert into users (name,age,description)
+        values(#{name},#{age},#{description})
+    </insert>
+
+    <delete id="deleteById">
+        delete from users where id = #{id}
+    </delete>
+
+    <select id="findAll" resultType="anchor.mybatis.entity.User">
+        select * from users
+    </select>
+
+    <select id="findOne" resultMap="baseResultMap">
+        select * from users where id = #{id}
+    </select>
+
+    <select id="findByName" resultMap="baseResultMap" parameterType="java.lang.String">
+        select * from users where name = #{name}
+    </select>
+
+    <update id="update">
+        update users
+		set id=#{id},name=#{name},age=#{age},description=#{description}
+		where id = #{id}
+    </update>
+</mapper>
