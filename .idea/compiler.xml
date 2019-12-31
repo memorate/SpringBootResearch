@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SpringDataJPA" />
         <module name="SpringBootMybatis" />
+        <module name="Common" />
+        <module name="SpringDataJPA" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Common" target="1.8" />
       <module name="SpringBootMybatis" target="1.8" />
       <module name="SpringBootResearch" target="1.8" />
       <module name="SpringDataJPA" target="8" />
@@ -18,6 +20,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Common" options="-parameters" />
       <module name="SpringBootMybatis" options="-parameters" />
       <module name="SpringDataJPA" options="-parameters" />
     </option>

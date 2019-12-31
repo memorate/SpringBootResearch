@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringBootMybatis/SpringBootMybatis.iml" filepath="$PROJECT_DIR$/SpringBootMybatis/SpringBootMybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SpringBootResearch.iml" filepath="$PROJECT_DIR$/.idea/SpringBootResearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringDataJPA/SpringDataJPA.iml" filepath="$PROJECT_DIR$/SpringDataJPA/SpringDataJPA.iml" />

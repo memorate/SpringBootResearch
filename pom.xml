@@ -11,6 +11,7 @@
     <modules>
         <module>SpringDataJPA</module>
         <module>SpringBootMybatis</module>
+        <module>Common</module>
     </modules>
 
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
