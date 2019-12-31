@@ -23,7 +23,11 @@
     </delete>
 
     <select id="findAll" resultType="anchor.mybatis.entity.User">
-        select * from users
+        select * from users order by ${_parameter} asc
+    </select>
+
+    <select id="getAll" resultType="anchor.mybatis.entity.User">
+        select * from users order by ${column} ${order}
     </select>
 
     <select id="findOne" resultMap="baseResultMap">
@@ -31,7 +35,7 @@
     </select>
 
     <select id="findByName" resultMap="baseResultMap" parameterType="java.lang.String">
-        select * from users where name = #{name}
+        select * from users where name like CONCAT('%',#{name},'%')
     </select>
 
     <select id="findByIds" resultMap="baseResultMap">

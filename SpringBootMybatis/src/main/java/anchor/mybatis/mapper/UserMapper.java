@@ -1,6 +1,7 @@
 package anchor.mybatis.mapper;
 
 import anchor.mybatis.entity.User;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,11 +14,13 @@ public interface UserMapper {
 
     int deleteById(Long id);
 
-    List<User> findAll();
+    List<User> findAll(String orderBy);
+
+    List<User> getAll(Map<String, String> param);
 
     User findOne(Long id);
 
-    User findByName(String name);
+    List<User> findByName(String name);
 
     List<User> findByIds(List<Long> idList);
 

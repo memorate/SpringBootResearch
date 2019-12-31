@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -23,15 +24,22 @@ public class UserService {
         return userMapper.deleteById(id);
     }
 
-    public List<User> getAllUser() {
-        return userMapper.findAll();
+    public List<User> getAllUser(String orderBy) {
+        return userMapper.findAll(orderBy);
+    }
+
+    public List<User> getAllUser(String column, String order) {
+        Map<String, String> param = new HashMap<>();
+        param.put("column", column);
+        param.put("order", order);
+        return userMapper.getAll(param);
     }
 
     public User getById(Long id) {
         return userMapper.findOne(id);
     }
 
-    public User getByName(String name) {
+    public List<User> getByName(String name) {
         return userMapper.findByName(name);
     }
 

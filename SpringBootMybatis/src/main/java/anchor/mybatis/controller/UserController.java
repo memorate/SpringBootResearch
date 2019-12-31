@@ -26,9 +26,18 @@ public class UserController {
         return userService.deleteById(id);
     }
 
+    @GetMapping("/findAll")
+    public List<User> getAll(@RequestParam(required = false, defaultValue = "id") String orderBy) {
+        return userService.getAllUser(orderBy);
+    }
+
     @GetMapping("/getAll")
-    public List<User> getAll() {
-        return userService.getAllUser();
+    public List<User> getAll(@RequestParam(required = false, defaultValue = "id") String column,
+                             @RequestParam(required = false, defaultValue = "asc") String order) {
+        if (!order.equalsIgnoreCase("asc") && !order.equalsIgnoreCase("desc")) {
+            throw new IllegalArgumentException("\"order\" 必须是 \"asc\"或\"desc\"");
+        }
+        return userService.getAllUser(column, order);
     }
 
     @GetMapping("/getById")
@@ -37,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/getByName")
-    public User getByName(@RequestParam String name) {
+    public List<User> getByName(@RequestParam String name) {
         return userService.getByName(name);
     }
 
