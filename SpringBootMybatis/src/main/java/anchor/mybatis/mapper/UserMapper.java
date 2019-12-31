@@ -4,6 +4,7 @@ import anchor.mybatis.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserMapper {
@@ -17,6 +18,12 @@ public interface UserMapper {
     User findOne(Long id);
 
     User findByName(String name);
+
+    List<User> findByIds(List<Long> idList);
+
+    List<User> pageQueryUser(Map<String, Object> param);
+
+    int findTotalUserNum();
 
     int update(User user);
 }

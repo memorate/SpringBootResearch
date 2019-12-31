@@ -1,5 +1,6 @@
 package anchor.mybatis.controller;
 
+import anchor.common.page.Page;
 import anchor.mybatis.entity.User;
 import anchor.mybatis.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -16,32 +17,44 @@ public class UserController {
 
     @PostMapping("/saveOne")
     @ResponseBody
-    public Long saveOne(@RequestBody User user){
+    public Long saveOne(@RequestBody User user) {
         return userService.save(user);
     }
 
     @DeleteMapping("/deleteById")
-    public int deleteById(@RequestParam Long id){
+    public int deleteById(@RequestParam Long id) {
         return userService.deleteById(id);
     }
 
     @GetMapping("/getAll")
-    public List<User> getAll(){
+    public List<User> getAll() {
         return userService.getAllUser();
     }
 
     @GetMapping("/getById")
-    public User getById(@RequestParam Long id){
+    public User getById(@RequestParam Long id) {
         return userService.getById(id);
     }
 
     @GetMapping("/getByName")
-    public User getByName(@RequestParam String name){
+    public User getByName(@RequestParam String name) {
         return userService.getByName(name);
     }
 
+    @PostMapping("/getByIds")
+    public List<User> getByIds(@RequestBody List<Long> idList) {
+        return userService.getByIds(idList);
+    }
+
+    @GetMapping("/pageQuery")
+    public Page<User> pageQuery(@RequestParam(required = false, defaultValue = "1") int pageNumber,
+                                @RequestParam(required = false, defaultValue = "4") int pageSize,
+                                @RequestParam(required = false, defaultValue = "id") String orderBy) {
+        return userService.pageQueryAll(pageNumber, pageSize, orderBy);
+    }
+
     @PostMapping("/update")
-    public int update(@RequestBody User user){
+    public int update(@RequestBody User user) {
         return userService.update(user);
     }
 }
