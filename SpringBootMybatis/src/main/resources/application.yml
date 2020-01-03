@@ -9,7 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
-  type-aliases-package: com.neo.model
+  type-aliases-package: anchor.mybatis.entity
   mapper-locations: classpath:mapping/*Mapper.xml
 
 logging:
