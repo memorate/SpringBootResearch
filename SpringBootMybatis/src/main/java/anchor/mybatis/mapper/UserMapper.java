@@ -21,6 +21,10 @@ public interface UserMapper {
 
     List<User> findByName(String name);
 
+    List<User> findByNameAndAge(String name, int age);
+
+    List<User> findByUser(User user);
+
     List<User> findByIds(List<Long> idList);
 
     List<User> pageQueryUser(Map<String, Object> param);
@@ -28,4 +32,6 @@ public interface UserMapper {
     int findTotalUserNum();
 
     int update(User user);
+
+    List<User> findByAge(String age);
 }

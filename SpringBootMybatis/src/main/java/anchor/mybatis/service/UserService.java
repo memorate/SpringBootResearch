@@ -43,6 +43,18 @@ public class UserService {
         return userMapper.findByName(name);
     }
 
+    public List<User> getByNameAndAge(String name, int age){
+        return userMapper.findByNameAndAge(name,age);
+    }
+
+    public List<User> getByAge(String age){
+        return userMapper.findByAge(age);
+    }
+
+    public List<User> getByUser(User user){
+        return userMapper.findByUser(user);
+    }
+
     public List<User> getByIds(List<Long> idList) {
         return userMapper.findByIds(idList);
     }

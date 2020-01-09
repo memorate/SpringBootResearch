@@ -50,6 +50,21 @@ public class UserController {
         return userService.getByName(name);
     }
 
+    @GetMapping("/getByNameAndAge")
+    public List<User> getByNameAndAge(@RequestParam String name, @RequestParam int age) {
+        return userService.getByNameAndAge(name, age);
+    }
+
+    @GetMapping("/getByAge")
+    public List<User> getByAge(@RequestParam String age) {
+        return userService.getByAge(age);
+    }
+
+    @PostMapping("/getByUser")
+    public List<User> getByUser(@RequestBody User user) {
+        return userService.getByUser(user);
+    }
+
     @PostMapping("/getByIds")
     public List<User> getByIds(@RequestBody List<Long> idList) {
         return userService.getByIds(idList);
