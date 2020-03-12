@@ -12,6 +12,7 @@
         <module>SpringDataJPA</module>
         <module>SpringBootMybatis</module>
         <module>Common</module>
+        <module>DailyUse</module>
     </modules>
 
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
