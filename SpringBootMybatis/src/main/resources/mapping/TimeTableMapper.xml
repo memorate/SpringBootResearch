@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="anchor.mybatis.mapper.TimeTableMapper">
+    <resultMap id="baseResultMap" type="anchor.mybatis.entity.TimeTable">
+        <id column="time_one" property="timeOne"/>
+        <result column="time_two" property="timeTwo"/>
+        <result column="time_three" property="timeThree"/>
+        <result column="time_four" property="timeFour"/>
+        <result column="time_five" property="timeFive"/>
+    </resultMap>
+
+    <sql id="baseColumnList">
+        time_one, time_two, time_three, time_four, time_five
+    </sql>
+
+    <insert id="insert" parameterType="anchor.mybatis.entity.TimeTable">
+        insert into time_table
+        (time_one, time_two, time_three, time_four, time_five)
+        values
+        (#{timeOne}, #{timeTwo}, #{timeThree}, #{timeFour}, #{timeFive})
+    </insert>
+
+</mapper>
