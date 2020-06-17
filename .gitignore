@@ -1,2 +1,3 @@
 # Project exclude paths
 /SpringBootMybatis/target/
+.idea/
