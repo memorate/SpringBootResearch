@@ -20,4 +20,11 @@
         (#{timeOne}, #{timeTwo}, #{timeThree}, #{timeFour}, #{timeFive})
     </insert>
 
+    <select id="findById" resultMap="baseResultMap">
+        select
+        time_one, time_two, time_three, time_four, time_five
+        from time_table
+        where id = #{id}
+    </select>
+
 </mapper>

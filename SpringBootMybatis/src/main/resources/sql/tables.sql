@@ -22,3 +22,16 @@ create table time_table
 		primary key (id)
 );
 
+create table timestamp_table
+(
+	id int auto_increment,
+	timestamp_one timestamp null,
+	timestamp_two timestamp null,
+	timestamp_three timestamp null,
+	timestamp_four timestamp null,
+	timestamp_five timestamp null,
+	timestamp_six   timestamp null,
+	constraint timestamp_table_pk
+		primary key (id)
+);
+

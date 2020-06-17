@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface TimeTableMapper {
 
     int insert(TimeTable timeTable);
+
+    TimeTable findById(long id);
 }
