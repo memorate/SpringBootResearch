@@ -18,6 +18,7 @@ create table time_table
 	time_three time null,
 	time_four time null,
 	time_five time null,
+	time_six time null,
 	constraint time_table_pk
 		primary key (id)
 );

@@ -7,22 +7,23 @@
         <result column="time_three" property="timeThree"/>
         <result column="time_four" property="timeFour"/>
         <result column="time_five" property="timeFive"/>
+        <result column="time_six" property="timeSix"/>
     </resultMap>
 
     <sql id="baseColumnList">
-        time_one, time_two, time_three, time_four, time_five
+        time_one, time_two, time_three, time_four, time_five, time_six
     </sql>
 
     <insert id="insert" parameterType="anchor.mybatis.entity.TimeTable">
         insert into time_table
-        (time_one, time_two, time_three, time_four, time_five)
+        (time_one, time_two, time_three, time_four, time_five, time_six)
         values
-        (#{timeOne}, #{timeTwo}, #{timeThree}, #{timeFour}, #{timeFive})
+        (#{timeOne}, #{timeTwo}, #{timeThree}, #{timeFour}, #{timeFive}, #{timeSix})
     </insert>
 
     <select id="findById" resultMap="baseResultMap">
         select
-        time_one, time_two, time_three, time_four, time_five
+        time_one, time_two, time_three, time_four, time_five, time_six
         from time_table
         where id = #{id}
     </select>

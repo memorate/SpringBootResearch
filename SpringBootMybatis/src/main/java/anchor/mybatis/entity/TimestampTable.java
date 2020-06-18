@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Data
@@ -24,11 +25,14 @@ public class TimestampTable {
     private Instant timestampSix;
 
     public TimestampTable() {
-        this.timestampOne = "1592388213";
-        this.timestampTwo = new Time(1592388213);
-        this.timestampThree = new Timestamp(1592388213);
-        this.timestampFour = new Date();
-        this.timestampFive = LocalDateTime.now();
-        this.timestampSix = Instant.now();
+//        this.timestampOne = "1592388213";              String类不能匹配mysql中的timestamp
+        this.timestampOne = null;
+//        this.timestampTwo = new Time(1592388213);      java.sql.Time类不能匹配mysql中的timestamp
+        this.timestampTwo = null;
+        Instant instant = Instant.now();
+        this.timestampThree = new Timestamp(instant.toEpochMilli());
+        this.timestampFour = new Date(instant.toEpochMilli());
+        this.timestampFive = LocalDateTime.ofInstant(instant, ZoneId.of("Asia/Shanghai"));
+        this.timestampSix = instant;
     }
 }

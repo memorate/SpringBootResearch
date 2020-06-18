@@ -1,7 +1,9 @@
 package anchor.mybatis;
 
 import anchor.mybatis.entity.TimeTable;
+import anchor.mybatis.entity.TimestampTable;
 import anchor.mybatis.mapper.TimeTableMapper;
+import anchor.mybatis.mapper.TimestampTableMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,10 +14,13 @@ import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TimeTableTest {
+public class TimeTest {
 
     @Resource
     private TimeTableMapper timeTableMapper;
+
+    @Resource
+    private TimestampTableMapper timestampTableMapper;
 
     @Test
     public void timeInsert() {
@@ -26,7 +31,20 @@ public class TimeTableTest {
 
     @Test
     public void timeQuery() {
-        TimeTable timeTable = timeTableMapper.findById(4);
-        System.out.println(timeTable);
+        TimeTable time = timeTableMapper.findById(4);
+        System.out.println(time);
+    }
+
+    @Test
+    public void timestampInsert() {
+        TimestampTable timestampTable = new TimestampTable();
+        System.out.println(timestampTable);
+        timestampTableMapper.insert(timestampTable);
+    }
+
+    @Test
+    public void timestampQuery() {
+        TimestampTable timestamp = timestampTableMapper.findById(4);
+        System.out.println(timestamp);
     }
 }

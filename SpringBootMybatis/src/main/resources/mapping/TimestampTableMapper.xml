@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="anchor.mybatis.mapper.TimestampTableMapper">
+    <resultMap id="baseResultMap" type="anchor.mybatis.entity.TimestampTable">
+        <id column="timestamp_one" property="timestampOne"/>
+        <result column="timestamp_two" property="timestampTwo"/>
+        <result column="timestamp_three" property="timestampThree"/>
+        <result column="timestamp_four" property="timestampFour"/>
+        <result column="timestamp_five" property="timestampFive"/>
+        <result column="timestamp_six" property="timestampSix"/>
+    </resultMap>
+
+    <sql id="baseColumnList">
+        timestamp_one, timestamp_two, timestamp_three, timestamp_four, timestamp_five, timestamp_six
+    </sql>
+
+    <insert id="insert" parameterType="anchor.mybatis.entity.TimestampTable">
+        insert into timestamp_table
+        (timestamp_one, timestamp_two, timestamp_three, timestamp_four, timestamp_five, timestamp_six)
+        values
+        (#{timestampOne}, #{timestampTwo}, #{timestampThree}, #{timestampFour}, #{timestampFive}, #{timestampSix})
+    </insert>
+
+    <select id="findById" resultMap="baseResultMap">
+        select
+        timestamp_one, timestamp_two, timestamp_three, timestamp_four, timestamp_five, timestamp_six
+        from timestamp_table
+        where id = #{id}
+    </select>
+
+</mapper>

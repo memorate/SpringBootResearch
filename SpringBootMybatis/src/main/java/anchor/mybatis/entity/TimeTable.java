@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Data
@@ -20,12 +22,16 @@ public class TimeTable {
 
     private LocalDateTime timeFive;
 
+    private Instant timeSix;
+
     public TimeTable() {
         this.timeOne = "2020-03-20 16:35:20";
         this.timeTwo = new Date();
 //        this.timeThree = new java.sql.Date(1584688952);    java.sql.Date类不能匹配mysql中的time
-        this.timeThree = new Timestamp(1584688952);
-        this.timeFour = new Time(1584688952);
-        this.timeFive = LocalDateTime.now();
+        Instant instant = Instant.now();
+        this.timeThree = new Timestamp(instant.toEpochMilli());
+        this.timeFour = new Time(instant.toEpochMilli());
+        this.timeFive = LocalDateTime.ofInstant(instant, ZoneId.of("Asia/Shanghai"));
+        this.timeSix = instant;
     }
 }
