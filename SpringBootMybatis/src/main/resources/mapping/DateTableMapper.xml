@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="anchor.mybatis.mapper.DateTableMapper">
+    <resultMap id="baseResultMap" type="anchor.mybatis.entity.DateTable">
+        <id column="date_one" property="dateOne"/>
+        <result column="date_two" property="dateTwo"/>
+        <result column="date_three" property="dateThree"/>
+        <result column="date_four" property="dateFour"/>
+        <result column="date_five" property="dateFive"/>
+    </resultMap>
+
+    <sql id="baseColumnList">
+        date_one, date_two, date_three, date_four, date_five
+    </sql>
+
+    <insert id="insert" parameterType="anchor.mybatis.entity.DateTable">
+        insert into date_table
+        (date_one, date_two, date_three, date_four, date_five)
+        values
+        (#{dateOne}, #{dateTwo}, #{dateThree}, #{dateFour}, #{dateFive})
+    </insert>
+
+    <select id="findById" resultMap="baseResultMap">
+        select
+        date_one, date_two, date_three, date_four, date_five
+        from date_table
+        where id = #{id}
+    </select>
+
+</mapper>

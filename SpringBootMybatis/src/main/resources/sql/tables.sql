@@ -36,3 +36,17 @@ create table timestamp_table
 		primary key (id)
 );
 
+create table date_table
+(
+	id int auto_increment,
+	date_one date null,
+	date_two date null,
+	date_three date null,
+	date_four date null,
+	date_five date null,
+	constraint date_table_pk
+		primary key (id)
+);
+
+
+
