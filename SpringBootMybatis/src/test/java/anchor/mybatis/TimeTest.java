@@ -1,9 +1,11 @@
 package anchor.mybatis;
 
 import anchor.mybatis.entity.DateTable;
+import anchor.mybatis.entity.DatetimeTable;
 import anchor.mybatis.entity.TimeTable;
 import anchor.mybatis.entity.TimestampTable;
 import anchor.mybatis.mapper.DateTableMapper;
+import anchor.mybatis.mapper.DatetimeTableMapper;
 import anchor.mybatis.mapper.TimeTableMapper;
 import anchor.mybatis.mapper.TimestampTableMapper;
 import org.junit.Test;
@@ -26,6 +28,9 @@ public class TimeTest {
 
     @Resource
     private DateTableMapper dateTableMapper;
+
+    @Resource
+    private DatetimeTableMapper datetimeTableMapper;
 
     @Test
     public void timeInsert() {
@@ -64,5 +69,18 @@ public class TimeTest {
     public void dateQuery() {
         DateTable dateTable = dateTableMapper.findById(1);
         System.out.println(dateTable);
+    }
+
+    @Test
+    public void datetimeInsert() {
+        DatetimeTable datetimeTable = new DatetimeTable();
+        System.out.println(datetimeTable);
+        datetimeTableMapper.insert(datetimeTable);
+    }
+
+    @Test
+    public void datetimeQuery() {
+        DatetimeTable datetimeTable = datetimeTableMapper.findById(1);
+        System.out.println(datetimeTable);
     }
 }

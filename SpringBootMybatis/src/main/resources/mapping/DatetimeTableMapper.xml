@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="anchor.mybatis.mapper.DatetimeTableMapper">
+    <resultMap id="baseResultMap" type="anchor.mybatis.entity.DatetimeTable">
+        <id column="datetime_one" property="datetimeOne"/>
+        <result column="datetime_two" property="datetimeTwo"/>
+        <result column="datetime_three" property="datetimeThree"/>
+        <result column="datetime_four" property="datetimeFour"/>
+        <result column="datetime_five" property="datetimeFive"/>
+    </resultMap>
+
+    <sql id="baseColumnList">
+        datetime_one, datetime_two, datetime_three, datetime_four, datetime_five
+    </sql>
+
+    <insert id="insert" parameterType="anchor.mybatis.entity.DatetimeTable">
+        insert into datetime_table
+        (datetime_one, datetime_two, datetime_three, datetime_four, datetime_five)
+        values
+        (#{datetimeOne}, #{datetimeTwo}, #{datetimeThree}, #{datetimeFour}, #{datetimeFive})
+    </insert>
+
+    <select id="findById" resultMap="baseResultMap">
+        select
+        datetime_one, datetime_two, datetime_three, datetime_four, datetime_five
+        from datetime_table
+        where id = #{id}
+    </select>
+
+</mapper>
