@@ -2,6 +2,7 @@ package anchor.mybatis.entity;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -20,6 +21,8 @@ public class DateTable {
 
     private LocalDateTime dateFive;
 
+    private Timestamp dateSix;
+
     public DateTable() {
         this.dateOne = "2020-03-20 16:35:20";
         Instant instant = Instant.now();
@@ -27,5 +30,6 @@ public class DateTable {
         this.dateThree = new java.sql.Date(instant.toEpochMilli());
         this.dateFour = instant;
         this.dateFive = LocalDateTime.ofInstant(instant, ZoneId.of("Asia/Shanghai"));
+        this.dateSix = new Timestamp(instant.toEpochMilli());
     }
 }

@@ -7,22 +7,23 @@
         <result column="date_three" property="dateThree"/>
         <result column="date_four" property="dateFour"/>
         <result column="date_five" property="dateFive"/>
+        <result column="date_six" property="dateSix"/>
     </resultMap>
 
     <sql id="baseColumnList">
-        date_one, date_two, date_three, date_four, date_five
+        date_one, date_two, date_three, date_four, date_five, date_six
     </sql>
 
     <insert id="insert" parameterType="anchor.mybatis.entity.DateTable">
         insert into date_table
-        (date_one, date_two, date_three, date_four, date_five)
+        (date_one, date_two, date_three, date_four, date_five, date_six)
         values
-        (#{dateOne}, #{dateTwo}, #{dateThree}, #{dateFour}, #{dateFive})
+        (#{dateOne}, #{dateTwo}, #{dateThree}, #{dateFour}, #{dateFive}, #{dateSix})
     </insert>
 
     <select id="findById" resultMap="baseResultMap">
         select
-        date_one, date_two, date_three, date_four, date_five
+        date_one, date_two, date_three, date_four, date_five, date_six
         from date_table
         where id = #{id}
     </select>

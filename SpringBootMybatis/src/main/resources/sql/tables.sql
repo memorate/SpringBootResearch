@@ -8,8 +8,6 @@ create table users
 		primary key (id)
 );
 
-
-
 create table time_table
 (
 	id int auto_increment,
@@ -44,7 +42,33 @@ create table date_table
 	date_three date null,
 	date_four date null,
 	date_five date null,
+	date_six date null,
 	constraint date_table_pk
+		primary key (id)
+);
+
+create table datetime_table
+(
+	id int auto_increment,
+	datetime_one datetime null,
+	datetime_two datetime null,
+	datetime_three datetime null,
+	datetime_four datetime null,
+	datetime_five datetime null,
+	datetime_six datetime null,
+	constraint datetime_table_pk
+		primary key (id)
+);
+
+create table year_table
+(
+	id int auto_increment,
+	year_one year null,
+	year_two year null,
+	year_three year null,
+	year_five year null,
+	year_six year null,
+	constraint year_table_pk
 		primary key (id)
 );
 
