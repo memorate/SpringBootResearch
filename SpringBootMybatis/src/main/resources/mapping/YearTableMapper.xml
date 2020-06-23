@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="anchor.mybatis.mapper.YearTableMapper">
+    <resultMap id="baseResultMap" type="anchor.mybatis.entity.YearTable">
+        <id column="year_one" property="yearOne"/>
+        <result column="year_two" property="yearTwo"/>
+        <result column="year_three" property="yearThree"/>
+        <result column="year_four" property="yearFour"/>
+        <result column="year_five" property="yearFive"/>
+        <result column="year_six" property="yearSix"/>
+    </resultMap>
+
+    <sql id="baseColumnList">
+        year_one, year_two, year_three, year_four, year_five, year_six
+    </sql>
+
+    <insert id="insert" parameterType="anchor.mybatis.entity.YearTable">
+        insert into year_table
+        (year_one, year_two, year_three, year_four, year_five, year_six)
+        values
+        (#{yearOne}, #{yearTwo}, #{yearThree}, #{yearFour}, #{yearFive}, #{yearSix})
+    </insert>
+
+    <select id="findById" resultMap="baseResultMap">
+        select
+        year_one, year_two, year_three, year_four, year_five, year_six
+        from year_table
+        where id = #{id}
+    </select>
+
+</mapper>

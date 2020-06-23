@@ -66,6 +66,7 @@ create table year_table
 	year_one year null,
 	year_two year null,
 	year_three year null,
+	year_four year null,
 	year_five year null,
 	year_six year null,
 	constraint year_table_pk

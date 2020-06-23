@@ -1,13 +1,7 @@
 package anchor.mybatis;
 
-import anchor.mybatis.entity.DateTable;
-import anchor.mybatis.entity.DatetimeTable;
-import anchor.mybatis.entity.TimeTable;
-import anchor.mybatis.entity.TimestampTable;
-import anchor.mybatis.mapper.DateTableMapper;
-import anchor.mybatis.mapper.DatetimeTableMapper;
-import anchor.mybatis.mapper.TimeTableMapper;
-import anchor.mybatis.mapper.TimestampTableMapper;
+import anchor.mybatis.entity.*;
+import anchor.mybatis.mapper.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,6 +25,9 @@ public class TimeTest {
 
     @Resource
     private DatetimeTableMapper datetimeTableMapper;
+
+    @Resource
+    private YearTableMapper yearTableMapper;
 
     @Test
     public void timeInsert() {
@@ -67,7 +64,7 @@ public class TimeTest {
 
     @Test
     public void dateQuery() {
-        DateTable dateTable = dateTableMapper.findById(1);
+        DateTable dateTable = dateTableMapper.findById(3);
         System.out.println(dateTable);
     }
 
@@ -82,5 +79,18 @@ public class TimeTest {
     public void datetimeQuery() {
         DatetimeTable datetimeTable = datetimeTableMapper.findById(1);
         System.out.println(datetimeTable);
+    }
+
+    @Test
+    public void yearInsert() {
+        YearTable yearTable = new YearTable();
+        System.out.println(yearTable);
+        yearTableMapper.insert(yearTable);
+    }
+
+    @Test
+    public void yearQuery() {
+        YearTable yearTable = yearTableMapper.findById(4);
+        System.out.println(yearTable);
     }
 }
