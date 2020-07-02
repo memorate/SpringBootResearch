@@ -1,3 +1,5 @@
 # Project exclude paths
 /SpringBootMybatis/target/
 /.idea/
+target/
+*.iml
