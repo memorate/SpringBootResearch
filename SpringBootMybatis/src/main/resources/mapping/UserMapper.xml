@@ -9,13 +9,20 @@
     </resultMap>
 
     <sql id="baseColumnList">
-        name,age,description
+        name, age, description
 	</sql>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="anchor.mybatis.entity.User">
         insert into users
         (<include refid="baseColumnList"/>)
         values(#{name},#{age},#{description})
+    </insert>
+
+    <insert id="saveList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into users (name, age, description) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.name}, #{item.age}, #{item.description})
+        </foreach>
     </insert>
 
     <delete id="deleteById">

@@ -11,6 +11,8 @@ public interface UserMapper {
 
     int save(User user);
 
+    int saveList(List<User> users);
+
     int deleteById(Long id);
 
     List<User> findAll(String orderBy);
