@@ -1,8 +1,8 @@
 package anchor.mybatis.controller;
 
-import anchor.common.page.Page;
 import anchor.mybatis.entity.User;
 import anchor.mybatis.service.UserService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,7 +18,7 @@ public class UserController {
     @PostMapping("/saveOne")
     @ResponseBody
     public Long saveOne(@RequestBody User user) {
-        return userService.save(user);
+        return userService.saveOne(user);
     }
 
     @DeleteMapping("/deleteById")
@@ -71,10 +71,9 @@ public class UserController {
     }
 
     @GetMapping("/pageQuery")
-    public Page<User> pageQuery(@RequestParam(required = false, defaultValue = "1") int pageNumber,
-                                @RequestParam(required = false, defaultValue = "4") int pageSize,
-                                @RequestParam(required = false, defaultValue = "id") String orderBy) {
-        return userService.pageQueryAll(pageNumber, pageSize, orderBy);
+    public PageInfo<User> pageQuery(@RequestParam(required = false, defaultValue = "1") int pageNumber,
+                                    @RequestParam(required = false, defaultValue = "4") int pageSize) {
+        return userService.pageQuery(pageNumber, pageSize);
     }
 
     @PostMapping("/update")

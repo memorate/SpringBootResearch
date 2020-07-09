@@ -9,7 +9,7 @@ import java.util.Map;
 @Repository
 public interface UserMapper {
 
-    int save(User user);
+    int saveOne(User user);
 
     int saveList(List<User> users);
 
@@ -28,10 +28,6 @@ public interface UserMapper {
     List<User> findByUser(User user);
 
     List<User> findByIds(List<Long> idList);
-
-    List<User> pageQueryUser(Map<String, Object> param);
-
-    int findTotalUserNum();
 
     int update(User user);
 

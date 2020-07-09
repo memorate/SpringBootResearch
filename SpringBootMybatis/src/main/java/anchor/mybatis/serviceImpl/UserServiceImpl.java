@@ -1,9 +1,11 @@
 package anchor.mybatis.serviceImpl;
 
-import anchor.common.page.Page;
+import anchor.mybatis.constant.UserColumn;
 import anchor.mybatis.entity.User;
 import anchor.mybatis.mapper.UserMapper;
 import anchor.mybatis.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,8 +21,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Long save(User user) {
-        userMapper.save(user);
+    public Long saveOne(User user) {
+        userMapper.saveOne(user);
         return user.getId();
     }
 
@@ -58,17 +60,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getByNameAndAge(String name, int age){
-        return userMapper.findByNameAndAge(name,age);
+    public List<User> getByNameAndAge(String name, int age) {
+        return userMapper.findByNameAndAge(name, age);
     }
 
     @Override
-    public List<User> getByAge(String age){
+    public List<User> getByAge(String age) {
         return userMapper.findByAge(age);
     }
 
     @Override
-    public List<User> getByUser(User user){
+    public List<User> getByUser(User user) {
         return userMapper.findByUser(user);
     }
 
@@ -78,18 +80,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> pageQueryAll(int pageNumber, int pageSize, String orderBy) {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("pageNumber", pageNumber - 1);
-        map.put("pageSize", pageSize);
-        map.put("orderBy", orderBy);
-        List<User> users = userMapper.pageQueryUser(map);
-        int totalUserNum = userMapper.findTotalUserNum();
-        Page<User> page = new Page<>(pageNumber, pageSize);
-        page.setResult(users);
-        page.setTotalRecord(totalUserNum);
-        page.setOrderBy(orderBy);
-        return page;
+    public PageInfo<User> pageQuery(int pageNumber, int pageSize) {
+        PageHelper.startPage(pageNumber, pageSize);
+        return new PageInfo<>(userMapper.findAll(UserColumn.COLUMN_NAME));
     }
 
     @Override

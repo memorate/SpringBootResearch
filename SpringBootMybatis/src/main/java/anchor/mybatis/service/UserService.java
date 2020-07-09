@@ -1,12 +1,12 @@
 package anchor.mybatis.service;
 
-import anchor.common.page.Page;
 import anchor.mybatis.entity.User;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 public interface UserService {
-    Long save(User user);
+    Long saveOne(User user);
 
     Integer saveList(List<User> users);
 
@@ -28,7 +28,7 @@ public interface UserService {
 
     List<User> getByIds(List<Long> idList);
 
-    Page<User> pageQueryAll(int pageNumber, int pageSize, String orderBy);
+    PageInfo<User> pageQuery(int pageNumber, int pageSize);
 
     Integer update(User user);
 }

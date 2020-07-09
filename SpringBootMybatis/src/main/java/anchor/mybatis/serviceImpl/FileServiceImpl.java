@@ -42,7 +42,7 @@ public class FileServiceImpl implements FileService {
             out.flush();
             out.close();
         } catch (Exception e) {
-            log.error("导出异常", e);
+            log.error("Export error!", e);
 //            throw new Exception("导出异常", e);
         }
     }
