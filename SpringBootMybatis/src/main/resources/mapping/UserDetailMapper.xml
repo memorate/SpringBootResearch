@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="anchor.mybatis.mapper.UserDetailMapper">
+
+    <resultMap id="baseResultMap" type="anchor.mybatis.entity.UserDetail">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="position" property="position"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="education" property="education"/>
+    </resultMap>
+
+    <sql id="baseColumnList">
+        id, user_id, position, phone_number, education
+    </sql>
+
+    <insert id="saveOne" useGeneratedKeys="true" keyProperty="id" parameterType="anchor.mybatis.entity.UserDetail">
+        insert into detail
+        (user_id, position, phone_number, education)
+        values(#{userId}, #{position}, #{phoneNumber}, #{education})
+    </insert>
+
+    <insert id="saveList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into detail
+        (user_id, position, phone_number, education)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+        (#{item.userId}, #{item.position}, #{item.phoneNumber}, #{item.education})
+        </foreach>
+    </insert>
+
+    <select id="findAll" resultType="anchor.mybatis.entity.UserDetail">
+        select
+        id, user_id, position, phone_number, education
+        from detail
+        order by ${_parameter} asc
+    </select>
+</mapper>

@@ -106,7 +106,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByAgeAndSort(int age, Sort sort);
 
     /**
-     * 自定方法 - 分页
+     * 自定方法 - 分页34
      */
     @Query("select u from User u where u.age = ?1")
     Page<User> findByAgeAndPage(int age, Pageable pageable);

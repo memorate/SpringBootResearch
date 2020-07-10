@@ -82,7 +82,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageInfo<User> pageQuery(int pageNumber, int pageSize) {
         PageHelper.startPage(pageNumber, pageSize);
-        return new PageInfo<>(userMapper.findAll(UserColumn.COLUMN_NAME));
+        List<User> users = userMapper.findAll(UserColumn.NAME);
+        return new PageInfo<>(users);
     }
 
     @Override
