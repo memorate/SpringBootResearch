@@ -5,6 +5,7 @@ import anchor.mybatis.entity.User;
 import anchor.mybatis.entity.UserDetail;
 import anchor.mybatis.mapper.UserDetailMapper;
 import anchor.mybatis.mapper.UserMapper;
+import anchor.mybatis.vo.MobileResponse;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.junit.Assert;
@@ -32,6 +33,9 @@ class ServiceTest {
 
     @Resource
     private UserDetailMapper detailMapper;
+
+    @Resource
+    private CommonService commonService;
 
     @Test
     void saveUsers() {
@@ -66,5 +70,28 @@ class ServiceTest {
         List<User> users = userMapper.findAll(UserColumn.NAME);
         PageInfo pageInfo = new PageInfo<>(users);
         Assert.assertEquals(2, pageInfo.getSize());
+    }
+
+    @Test
+    void getForString() {
+        System.out.println(commonService.getForString("15927005006"));
+    }
+
+    @Test
+    void getForResponse() {
+        MobileResponse response = commonService.getForResponse("15927005006");
+        System.out.println(response);
+    }
+
+    @Test
+    void getForStringWithHeader() {
+        String response = commonService.getForStringWithHeader("15927005006");
+        System.out.println(response);
+    }
+
+    @Test
+    void getForResponseWithHeader() {
+        MobileResponse response = commonService.getForResponseWithHeader("15927005006");
+        System.out.println(response);
     }
 }

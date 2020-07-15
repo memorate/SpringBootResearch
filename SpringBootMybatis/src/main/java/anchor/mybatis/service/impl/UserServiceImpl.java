@@ -1,4 +1,4 @@
-package anchor.mybatis.serviceImpl;
+package anchor.mybatis.service.impl;
 
 import anchor.mybatis.constant.UserColumn;
 import anchor.mybatis.entity.User;
