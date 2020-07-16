@@ -1,6 +1,8 @@
 package anchor.mybatis.service;
 
 import anchor.mybatis.vo.MobileResponse;
+import anchor.mybatis.vo.QRCodeResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface CommonService {
 
@@ -14,5 +16,11 @@ public interface CommonService {
 
     MobileResponse getForResponseWithHeader(String mobile);
 
-    void sendPostRequest();
+    String postForString(String content);
+
+    QRCodeResponse postForResponse(String content);
+
+    QRCodeResponse postForResponseWithHeader(String content);
+
+    ResponseEntity<QRCodeResponse> postForEntityWithHeader(String content);
 }

@@ -6,12 +6,14 @@ import anchor.mybatis.entity.UserDetail;
 import anchor.mybatis.mapper.UserDetailMapper;
 import anchor.mybatis.mapper.UserMapper;
 import anchor.mybatis.vo.MobileResponse;
+import anchor.mybatis.vo.QRCodeResponse;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
@@ -92,6 +94,30 @@ class ServiceTest {
     @Test
     void getForResponseWithHeader() {
         MobileResponse response = commonService.getForResponseWithHeader("15927005006");
+        System.out.println(response);
+    }
+
+    @Test
+    void postForString() {
+        String response = commonService.postForString("Anchor");
+        System.out.println(response);
+    }
+
+    @Test
+    void postForResponse() {
+        QRCodeResponse response = commonService.postForResponse("Anchor");
+        System.out.println(response);
+    }
+
+    @Test
+    void postForResponseWithHeader() {
+        QRCodeResponse response = commonService.postForResponseWithHeader("Anchor");
+        System.out.println(response);
+    }
+
+    @Test
+    void postForEntityWithHeader() {
+        ResponseEntity<QRCodeResponse> response = commonService.postForEntityWithHeader("Anchor");
         System.out.println(response);
     }
 }

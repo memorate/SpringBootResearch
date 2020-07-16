@@ -3,19 +3,20 @@ package anchor.mybatis.vo;
 import lombok.Data;
 
 @Data
-public class MobileResponse extends MXNResponse{
+public class QRCodeResponse extends MXNResponse{
     private Data data;
 
     @lombok.Data
     static class Data {
-        private String mobile;
-        private String province;
-        private String carrier;
+        private String qrCodeUrl;
+        private String content;
+        private int type;
+        private String qrCodeBase64;
     }
 
     @Override
     public String toString() {
-        return "MobileResponse{" +
+        return "QRCodeResponse{" +
                 "code=\"" + this.getCode() +
                 "\", msg=\"" + this.getMsg() +
                 "\", data=" + data +

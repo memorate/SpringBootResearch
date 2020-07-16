@@ -5,21 +5,26 @@ import anchor.mybatis.entity.User;
 import anchor.mybatis.service.CommonService;
 import anchor.mybatis.service.UserService;
 import anchor.mybatis.vo.MobileResponse;
+import anchor.mybatis.vo.QRCodeResponse;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -30,9 +35,9 @@ import java.util.stream.Collectors;
 @Service
 public class CommonServiceImpl implements CommonService {
 
-    private final static String MXNUrl = "https://www.mxnzp.com/api";
-    private final static String APP_ID = "fivjhtnnpidhkmmj";
-    private final static String APP_SECRET = "dFY0TUF5cFhnK3QrWnEzOEs5TVRldz09";
+    private final static String MXN_URL = "https://www.mxnzp.com/api";
+    private final static String MXN_APP_ID = "fivjhtnnpidhkmmj";
+    private final static String MXN_APP_SECRET = "dFY0TUF5cFhnK3QrWnEzOEs5TVRldz09";
 
     @Resource
     private HttpServletResponse response;
@@ -63,30 +68,30 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public String getForString(String mobile) {
-        String url = MXNUrl + "/mobile_location/aim_mobile?mobile={mobile}&app_id={app_id}&app_secret={app_secret}";
+        String url = MXN_URL + "/mobile_location/aim_mobile?mobile={mobile}&app_id={app_id}&app_secret={app_secret}";
         Map<String, String> params = new HashMap<>();
         params.put("mobile", mobile);
-        params.put("app_id", APP_ID);
-        params.put("app_secret", APP_SECRET);
+        params.put("app_id", MXN_APP_ID);
+        params.put("app_secret", MXN_APP_SECRET);
         return restTemplate.getForObject(url, String.class, params);
     }
 
     @Override
     public MobileResponse getForResponse(String mobile) {
-        String url = MXNUrl + "/mobile_location/aim_mobile?mobile={mobile}&app_id={app_id}&app_secret={app_secret}";
+        String url = MXN_URL + "/mobile_location/aim_mobile?mobile={mobile}&app_id={app_id}&app_secret={app_secret}";
         Map<String, String> params = new HashMap<>();
         params.put("mobile", mobile);
-        params.put("app_id", APP_ID);
-        params.put("app_secret", APP_SECRET);
+        params.put("app_id", MXN_APP_ID);
+        params.put("app_secret", MXN_APP_SECRET);
         return restTemplate.getForObject(url, MobileResponse.class, params);
     }
 
     @Override
     public String getForStringWithHeader(String mobile) {
-        String url = MXNUrl + "/mobile_location/aim_mobile?mobile=" + mobile;
+        String url = MXN_URL + "/mobile_location/aim_mobile?mobile=" + mobile;
         HttpHeaders headers = new HttpHeaders();
-        headers.add("app_id", APP_ID);
-        headers.add("app_secret", APP_SECRET);
+        headers.add("app_id", MXN_APP_ID);
+        headers.add("app_secret", MXN_APP_SECRET);
         HttpEntity httpEntity = new HttpEntity(headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
         return responseEntity.getBody();
@@ -94,17 +99,76 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public MobileResponse getForResponseWithHeader(String mobile) {
-        String url = MXNUrl + "/mobile_location/aim_mobile?mobile=" + mobile;
+        String url = MXN_URL + "/mobile_location/aim_mobile?mobile=" + mobile;
         HttpHeaders headers = new HttpHeaders();
-        headers.add("app_id", APP_ID);
-        headers.add("app_secret", APP_SECRET);
+        headers.add("app_id", MXN_APP_ID);
+        headers.add("app_secret", MXN_APP_SECRET);
         HttpEntity httpEntity = new HttpEntity(headers);
         ResponseEntity<MobileResponse> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, MobileResponse.class);
         return responseEntity.getBody();
     }
 
     @Override
-    public void sendPostRequest() {
+    public String postForString(String content) {
+        String url = MXN_URL + "qrcode/create/logo";
+        FileSystemResource resource = new FileSystemResource(new File("D:/文件/壁纸/avatar.jpg"));
+        MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+        params.add("content", content);
+        params.add("size", 500);
+        params.add("logo_size", 100);
+        params.add("type", 0);
+        params.add("logo_img", resource);
+        params.add("app_id", MXN_APP_ID);
+        params.add("app_secret", MXN_APP_SECRET);
+        return restTemplate.postForObject(url, params, String.class);
+    }
 
+    @Override
+    public QRCodeResponse postForResponse(String content) {
+        String url = MXN_URL + "qrcode/create/logo";
+        FileSystemResource resource = new FileSystemResource(new File("D:/文件/壁纸/cat.png"));
+        MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+        params.add("content", content);
+        params.add("size", 400);
+        params.add("logo_size", 120);
+        params.add("type", 0);
+        params.add("logo_img", resource);
+        params.add("app_id", MXN_APP_ID);
+        params.add("app_secret", MXN_APP_SECRET);
+        return restTemplate.postForObject(url, params, QRCodeResponse.class);
+    }
+
+    @Override
+    public QRCodeResponse postForResponseWithHeader(String content) {
+        String url = MXN_URL + "qrcode/create/logo";
+        FileSystemResource resource = new FileSystemResource(new File("D:/文件/壁纸/cat.png"));
+        MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+        params.add("content", content);
+        params.add("size", 400);
+        params.add("logo_size", 120);
+        params.add("type", 0);
+        params.add("logo_img", resource);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("app_id", MXN_APP_ID);
+        headers.add("app_secret", MXN_APP_SECRET);
+        HttpEntity httpEntity = new HttpEntity(params, headers);
+        return restTemplate.postForObject(url, httpEntity, QRCodeResponse.class);
+    }
+
+    @Override
+    public ResponseEntity<QRCodeResponse> postForEntityWithHeader(String content) {
+        String url = MXN_URL + "qrcode/create/logo";
+        FileSystemResource resource = new FileSystemResource(new File("D:/文件/壁纸/cat.png"));
+        MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+        params.add("content", content);
+        params.add("size", 400);
+        params.add("logo_size", 120);
+        params.add("type", 0);
+        params.add("logo_img", resource);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("app_id", MXN_APP_ID);
+        headers.add("app_secret", MXN_APP_SECRET);
+        HttpEntity httpEntity = new HttpEntity(params, headers);
+        return restTemplate.postForEntity(url, httpEntity, QRCodeResponse.class);
     }
 }
