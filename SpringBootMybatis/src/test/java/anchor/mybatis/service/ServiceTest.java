@@ -86,6 +86,12 @@ class ServiceTest {
     }
 
     @Test
+    void getForEntity() {
+        ResponseEntity<MobileResponse> response = commonService.getForEntity("15927005006");
+        System.out.println(response);
+    }
+
+    @Test
     void getForStringWithHeader() {
         String response = commonService.getForStringWithHeader("15927005006");
         System.out.println(response);
@@ -93,7 +99,7 @@ class ServiceTest {
 
     @Test
     void getForResponseWithHeader() {
-        MobileResponse response = commonService.getForResponseWithHeader("15927005006");
+        MobileResponse response = commonService.getForEntityWithHeader("15927005006");
         System.out.println(response);
     }
 

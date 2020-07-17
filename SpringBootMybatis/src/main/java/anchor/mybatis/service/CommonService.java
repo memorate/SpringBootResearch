@@ -12,13 +12,17 @@ public interface CommonService {
 
     MobileResponse getForResponse(String mobile);
 
+    ResponseEntity<MobileResponse> getForEntity(String mobile);
+
     String getForStringWithHeader(String mobile);
 
-    MobileResponse getForResponseWithHeader(String mobile);
+    ResponseEntity<MobileResponse> getForEntityWithHeader(String mobile);
 
     String postForString(String content);
 
     QRCodeResponse postForResponse(String content);
+
+    ResponseEntity<QRCodeResponse> postForEntity(String content);
 
     QRCodeResponse postForResponseWithHeader(String content);
 
