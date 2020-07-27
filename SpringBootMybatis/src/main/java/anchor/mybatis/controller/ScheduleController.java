@@ -40,4 +40,14 @@ public class ScheduleController {
     public Date addCronJob(@RequestParam String className, @RequestParam String cronExpression) throws Exception {
         return scheduleService.addAndStartCronJob(className, cronExpression);
     }
+
+    @GetMapping("/pauseAllJob")
+    public void pauseAllJob() throws SchedulerException {
+        scheduleService.pauseAll();
+    }
+
+    @GetMapping("/resumeAll")
+    public void resumeAll() throws SchedulerException {
+        scheduleService.resumeAll();
+    }
 }

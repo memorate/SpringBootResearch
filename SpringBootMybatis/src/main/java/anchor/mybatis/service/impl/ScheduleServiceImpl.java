@@ -20,10 +20,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     public Date addAndStartSimpleJob(Class<? extends Job> jobClass, Trigger trigger) throws SchedulerException {
         String jobName = jobClass.getName();
         JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, JOB_GROUP).storeDurably().build();
-        Date date = scheduler.scheduleJob(jobDetail, trigger);
-        //必须手动启动，第一次创建的scheduler处于standBy模式，不会自己启动
-        scheduler.start();
-        return date;
+        return scheduler.scheduleJob(jobDetail, trigger);
     }
 
     @Override
@@ -43,8 +40,36 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .startNow()
                 .withSchedule(CronScheduleBuilder.cronSchedule(cronExpression))
                 .build();
-        Date date = scheduler.scheduleJob(jobDetail, trigger);
-        scheduler.start();
-        return date;
+        return scheduler.scheduleJob(jobDetail, trigger);
+    }
+
+    @Override
+    public void pauseJob(String className) throws Exception {
+        JobKey jobKey = new JobKey(className, JOB_GROUP);
+        if (scheduler.checkExists(jobKey)) {
+            scheduler.pauseJob(jobKey);
+        }else {
+            throw new Exception("Job \"" + className + "\" doesn't exist.");
+        }
+    }
+
+    @Override
+    public void resumeJob(String className) throws Exception {
+        JobKey jobKey = new JobKey(className, JOB_GROUP);
+        if (scheduler.checkExists(jobKey)) {
+            scheduler.resumeJob(jobKey);
+        }else {
+            throw new Exception("Job \"" + className + "\" doesn't exist.");
+        }
+    }
+
+    @Override
+    public void pauseAll() throws SchedulerException {
+        scheduler.pauseAll();
+    }
+
+    @Override
+    public void resumeAll() throws SchedulerException {
+        scheduler.resumeAll();
     }
 }
