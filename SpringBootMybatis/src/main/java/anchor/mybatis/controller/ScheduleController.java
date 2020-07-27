@@ -27,16 +27,17 @@ public class ScheduleController {
     public Date addSimpleJob() throws SchedulerException {
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
                 .withIntervalInSeconds(5)
+                .withMisfireHandlingInstructionFireNow()
                 .repeatForever();
         SimpleTrigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("SimpleTrigger", TRIGGER_GROUP)
                 .startNow()
                 .withSchedule(scheduleBuilder).build();
-        return scheduleService.addJob(SimpleJob.class, trigger);
+        return scheduleService.addAndStartSimpleJob(SimpleJob.class, trigger);
     }
 
-    @GetMapping("/startJob")
-    public void startJob(@RequestParam String className) throws Exception {
-        scheduleService.startJob(className);
+    @GetMapping("/addCronJob")
+    public Date addCronJob(@RequestParam String className, @RequestParam String cronExpression) throws Exception {
+        return scheduleService.addAndStartCronJob(className, cronExpression);
     }
 }

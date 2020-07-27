@@ -8,7 +8,7 @@ import java.util.Date;
 
 public interface ScheduleService {
 
-    void startJob(String className) throws Exception;
+    Date addAndStartSimpleJob(Class <? extends Job> jobClass, Trigger trigger) throws SchedulerException;
 
-    Date addJob(Class <? extends Job> jobClass, Trigger trigger) throws SchedulerException;
+    Date addAndStartCronJob(String className, String cronExpression) throws Exception;
 }
