@@ -8,6 +8,25 @@ spring:
     password: anchor#123
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  jackson:
+    time-zone: Asia/Shanghai
+
+  quartz:
+    job-store-type: memory
+    scheduler-name: AnchorScheduler
+    properties:
+      org.quartz.scheduler.instanceId: 1122334
+      org.quartz.scheduler.rmi.export: false
+      org.quartz.scheduler.rmi.proxy: false
+      org.quartz.scheduler.wrapJobExecutionInUserTransaction: false
+      org.quartz.threadPool.class: org.quartz.simpl.SimpleThreadPool
+      org.quartz.threadPool.threadCount: 9
+      org.quartz.threadPool.threadPriority: 5
+      org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread: true
+      #作业最大延迟时间,毫秒
+      org.quartz.jobStore.misfireThreshold: 60000
+      org.quartz.jobStore.class: org.quartz.simpl.RAMJobStore
+
 mybatis:
   type-aliases-package: anchor.mybatis.entity
   mapper-locations: classpath:mapping/*Mapper.xml
