@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 import static anchor.mybatis.constant.ScheduleConstant.TRIGGER_GROUP;
 
@@ -41,13 +42,38 @@ public class ScheduleController {
         return scheduleService.addAndStartCronJob(className, cronExpression);
     }
 
-    @GetMapping("/pauseAllJob")
-    public void pauseAllJob() throws SchedulerException {
+    @GetMapping("/modifyJobCron")
+    public Date modifyJobCron(@RequestParam String className, @RequestParam String cronExpression) throws Exception {
+        return scheduleService.modifyJobCron(className, cronExpression);
+    }
+
+    @GetMapping("/pauseJob")
+    public void pauseJob(@RequestParam String className) throws Exception {
+        scheduleService.pauseJob(className);
+    }
+
+    @GetMapping("/resumeJob")
+    public void resumeJob(@RequestParam String className) throws Exception {
+        scheduleService.resumeJob(className);
+    }
+
+    @GetMapping("/pauseAll")
+    public void pauseAll() throws SchedulerException {
         scheduleService.pauseAll();
     }
 
     @GetMapping("/resumeAll")
     public void resumeAll() throws SchedulerException {
         scheduleService.resumeAll();
+    }
+
+    @GetMapping("/getExecutingJobs")
+    public List<String> getExecutingJobs() throws SchedulerException {
+        return scheduleService.getExecutingJobs();
+    }
+
+    @GetMapping("/deleteJob")
+    public boolean deleteJob(@RequestParam String className) throws Exception {
+        return scheduleService.deleteJob(className);
     }
 }
