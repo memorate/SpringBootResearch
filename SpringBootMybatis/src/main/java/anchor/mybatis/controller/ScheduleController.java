@@ -1,6 +1,7 @@
 package anchor.mybatis.controller;
 
 import anchor.common.quartz.job.SimpleJob;
+import anchor.common.response.BaseResponse;
 import anchor.mybatis.service.ScheduleService;
 import org.quartz.SchedulerException;
 import org.quartz.SimpleScheduleBuilder;
@@ -25,7 +26,7 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
     @GetMapping("/addSimpleJob")
-    public Date addSimpleJob() throws SchedulerException {
+    public BaseResponse<Date> addSimpleJob() throws SchedulerException {
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
                 .withIntervalInSeconds(5)
                 .withMisfireHandlingInstructionFireNow()
@@ -34,46 +35,53 @@ public class ScheduleController {
                 .withIdentity("SimpleTrigger", TRIGGER_GROUP)
                 .startNow()
                 .withSchedule(scheduleBuilder).build();
-        return scheduleService.addAndStartSimpleJob(SimpleJob.class, trigger);
+        Date date = scheduleService.addAndStartSimpleJob(SimpleJob.class, trigger);
+        return new BaseResponse<>(date);
     }
 
     @GetMapping("/addCronJob")
-    public Date addCronJob(@RequestParam String className, @RequestParam String cronExpression) throws Exception {
-        return scheduleService.addAndStartCronJob(className, cronExpression);
+    public BaseResponse<Date> addCronJob(@RequestParam String className, @RequestParam String cronExpression) throws Exception {
+        Date date = scheduleService.addAndStartCronJob(className, cronExpression);
+        return new BaseResponse<>(date);
     }
 
     @GetMapping("/modifyJobCron")
-    public Date modifyJobCron(@RequestParam String className, @RequestParam String cronExpression) throws Exception {
-        return scheduleService.modifyJobCron(className, cronExpression);
+    public BaseResponse<Date> modifyJobCron(@RequestParam String className, @RequestParam String cronExpression) throws Exception {
+        Date date = scheduleService.modifyJobCron(className, cronExpression);
+        return new BaseResponse<>(date);
     }
 
     @GetMapping("/pauseJob")
-    public void pauseJob(@RequestParam String className) throws Exception {
+    public BaseResponse pauseJob(@RequestParam String className) throws Exception {
         scheduleService.pauseJob(className);
+        return new BaseResponse();
     }
 
     @GetMapping("/resumeJob")
-    public void resumeJob(@RequestParam String className) throws Exception {
+    public BaseResponse resumeJob(@RequestParam String className) throws Exception {
         scheduleService.resumeJob(className);
+        return new BaseResponse();
     }
 
     @GetMapping("/pauseAll")
-    public void pauseAll() throws SchedulerException {
+    public BaseResponse pauseAll() throws SchedulerException {
         scheduleService.pauseAll();
+        return new BaseResponse();
     }
 
     @GetMapping("/resumeAll")
-    public void resumeAll() throws SchedulerException {
+    public BaseResponse resumeAll() throws SchedulerException {
         scheduleService.resumeAll();
+        return new BaseResponse();
     }
 
     @GetMapping("/getExecutingJobs")
-    public List<String> getExecutingJobs() throws SchedulerException {
-        return scheduleService.getExecutingJobs();
+    public BaseResponse<List<String>> getExecutingJobs() throws SchedulerException {
+        return new BaseResponse<>(scheduleService.getExecutingJobs());
     }
 
     @GetMapping("/deleteJob")
-    public boolean deleteJob(@RequestParam String className) throws Exception {
-        return scheduleService.deleteJob(className);
+    public BaseResponse<Boolean> deleteJob(@RequestParam String className) throws Exception {
+        return new BaseResponse<>(scheduleService.deleteJob(className));
     }
 }
