@@ -7,7 +7,7 @@ public class MobileResponse extends MXNResponse{
     private Data data;
 
     @lombok.Data
-    static class Data {
+    public static class Data {
         private String mobile;
         private String province;
         private String carrier;

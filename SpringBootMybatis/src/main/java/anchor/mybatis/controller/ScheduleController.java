@@ -1,7 +1,7 @@
 package anchor.mybatis.controller;
 
-import anchor.common.quartz.job.SimpleJob;
 import anchor.common.response.BaseResponse;
+import anchor.mybatis.quartz.job.SimpleJob;
 import anchor.mybatis.service.ScheduleService;
 import org.quartz.SchedulerException;
 import org.quartz.SimpleScheduleBuilder;

@@ -1,4 +1,4 @@
-package anchor.common.quartz.job;
+package anchor.mybatis.quartz.job;
 
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

@@ -4,6 +4,7 @@ import anchor.mybatis.service.ScheduleService;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,6 +20,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Resource
     private Scheduler scheduler;
+
+    @Resource
+    private SchedulerFactoryBean schedulerFactoryBean;
 
     public Date addAndStartSimpleJob(Class<? extends Job> jobClass, Trigger trigger) throws SchedulerException {
         String jobName = jobClass.getName();
