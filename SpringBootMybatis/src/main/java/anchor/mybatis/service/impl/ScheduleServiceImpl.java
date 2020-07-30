@@ -4,7 +4,6 @@ import anchor.mybatis.service.ScheduleService;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,9 +19,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Resource
     private Scheduler scheduler;
-
-    @Resource
-    private SchedulerFactoryBean schedulerFactoryBean;
 
     public Date addAndStartSimpleJob(Class<? extends Job> jobClass, Trigger trigger) throws SchedulerException {
         String jobName = jobClass.getName();
@@ -54,7 +50,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Date modifyJobCron(String className, String cronExpression) throws Exception {
         try {
-            //用于校验类名是否存在
+            //用于校验改任务的实现类.
+            // 是否存在
             String entireClassName = JOB_PACKAGE + "." + className;
             Class clazz = Class.forName(entireClassName);
         } catch (ClassNotFoundException e) {
@@ -117,6 +114,19 @@ public class ScheduleServiceImpl implements ScheduleService {
         JobKey jobKey = new JobKey(className, JOB_GROUP);
         if (scheduler.checkExists(jobKey)) {
             return scheduler.deleteJob(jobKey);
+        } else {
+            throw new Exception("Job \"" + className + "\" doesn't exist.");
+        }
+    }
+
+    @Override
+    public String getJobStatus(String className) throws Exception {
+        JobKey jobKey = new JobKey(className, JOB_GROUP);
+        if (scheduler.checkExists(jobKey)) {
+            String triggerName = className + "Trigger";
+            TriggerKey triggerKey = new TriggerKey(triggerName, TRIGGER_GROUP);
+            Trigger.TriggerState state = scheduler.getTriggerState(triggerKey);
+            return JOB_STATUS.get(state);
         } else {
             throw new Exception("Job \"" + className + "\" doesn't exist.");
         }

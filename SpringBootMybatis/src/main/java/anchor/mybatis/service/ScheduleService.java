@@ -26,4 +26,6 @@ public interface ScheduleService {
     List<String> getExecutingJobs() throws SchedulerException;
 
     boolean deleteJob(String className) throws Exception;
+
+    String getJobStatus(String className) throws Exception;
 }

@@ -84,4 +84,9 @@ public class ScheduleController {
     public BaseResponse<Boolean> deleteJob(@RequestParam String className) throws Exception {
         return new BaseResponse<>(scheduleService.deleteJob(className));
     }
+
+    @GetMapping("/getJobStatus")
+    public BaseResponse<String> getJobStatus(@RequestParam String className) throws Exception {
+        return new BaseResponse<>(scheduleService.getJobStatus(className));
+    }
 }
