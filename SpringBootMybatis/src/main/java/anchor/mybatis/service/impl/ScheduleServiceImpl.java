@@ -30,17 +30,16 @@ public class ScheduleServiceImpl implements ScheduleService {
     public Date addAndStartCronJob(String className, String cronExpression) throws Exception {
         Class clazz = null;
         try {
-            //用于校验类名是否存在并实例化一个自定义的Job类
+            //用于校验类是否存在并实例化该的任务类
             String entireClassName = JOB_PACKAGE + "." + className;
             clazz = Class.forName(entireClassName);
         } catch (ClassNotFoundException e) {
             throw new Exception("Class \"" + className + "\" doesn't exist.");
         }
-        String triggerName = className + "Trigger";
         //将类名作为Quartz的任务名，“类名 + Trigger”作为Trigger名
         JobDetail jobDetail = JobBuilder.newJob(clazz).withIdentity(className, JOB_GROUP).storeDurably().build();
         CronTrigger trigger = TriggerBuilder.newTrigger()
-                .withIdentity(triggerName, TRIGGER_GROUP)
+                .withIdentity(className + "Trigger", TRIGGER_GROUP)
                 .startNow()
                 .withSchedule(CronScheduleBuilder.cronSchedule(cronExpression))
                 .build();
@@ -50,8 +49,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Date modifyJobCron(String className, String cronExpression) throws Exception {
         try {
-            //用于校验改任务的实现类.
-            // 是否存在
+            //用于校验改任务的实现类是否存在
             String entireClassName = JOB_PACKAGE + "." + className;
             Class clazz = Class.forName(entireClassName);
         } catch (ClassNotFoundException e) {
@@ -88,35 +86,22 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void pauseAll() throws SchedulerException {
-        scheduler.pauseAll();
-    }
-
-    @Override
-    public void resumeAll() throws SchedulerException {
-        scheduler.resumeAll();
-    }
-
-    @Override
-    public List<String> getExecutingJobs() throws SchedulerException {
+    public List<String> getJobsByState(String queryState) throws Exception {
+        if (!TRIGGER_STATUS.containsKey(queryState)) {
+            throw new Exception("queryState doesn't exist.");
+        }
         List<String> jobNames = new ArrayList<>();
         List<String> jobGroupNames = scheduler.getJobGroupNames();
         for (String groupName : jobGroupNames) {
             for (JobKey jobKey : scheduler.getJobKeys(GroupMatcher.jobGroupEquals(groupName))) {
-                jobNames.add(jobKey.getName());
+                String triggerName = jobKey.getName() + "Trigger";
+                Trigger.TriggerState state = scheduler.getTriggerState(new TriggerKey(triggerName, TRIGGER_GROUP));
+                if (state.equals(TRIGGER_STATUS.get(queryState))) {
+                    jobNames.add(jobKey.getName());
+                }
             }
         }
         return jobNames;
-    }
-
-    @Override
-    public boolean deleteJob(String className) throws Exception {
-        JobKey jobKey = new JobKey(className, JOB_GROUP);
-        if (scheduler.checkExists(jobKey)) {
-            return scheduler.deleteJob(jobKey);
-        } else {
-            throw new Exception("Job \"" + className + "\" doesn't exist.");
-        }
     }
 
     @Override
@@ -130,5 +115,25 @@ public class ScheduleServiceImpl implements ScheduleService {
         } else {
             throw new Exception("Job \"" + className + "\" doesn't exist.");
         }
+    }
+
+    @Override
+    public boolean deleteJob(String className) throws Exception {
+        JobKey jobKey = new JobKey(className, JOB_GROUP);
+        if (scheduler.checkExists(jobKey)) {
+            return scheduler.deleteJob(jobKey);
+        } else {
+            throw new Exception("Job \"" + className + "\" doesn't exist.");
+        }
+    }
+
+    @Override
+    public void pauseAll() throws SchedulerException {
+        scheduler.pauseAll();
+    }
+
+    @Override
+    public void resumeAll() throws SchedulerException {
+        scheduler.resumeAll();
     }
 }

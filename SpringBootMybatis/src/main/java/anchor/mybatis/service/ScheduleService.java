@@ -23,7 +23,7 @@ public interface ScheduleService {
 
     void resumeAll() throws SchedulerException;
 
-    List<String> getExecutingJobs() throws SchedulerException;
+    List<String> getJobsByState(String queryState) throws Exception;
 
     boolean deleteJob(String className) throws Exception;
 

@@ -75,9 +75,9 @@ public class ScheduleController {
         return new BaseResponse();
     }
 
-    @GetMapping("/getExecutingJobs")
-    public BaseResponse<List<String>> getExecutingJobs() throws SchedulerException {
-        return new BaseResponse<>(scheduleService.getExecutingJobs());
+    @GetMapping("/getJobsByState")
+    public BaseResponse<List<String>> getJobsByState(@RequestParam String queryState) throws Exception {
+        return new BaseResponse<>(scheduleService.getJobsByState(queryState));
     }
 
     @GetMapping("/deleteJob")
