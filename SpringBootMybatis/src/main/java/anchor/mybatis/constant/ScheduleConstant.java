@@ -6,8 +6,8 @@ import org.quartz.Trigger;
 import java.util.Map;
 
 public interface ScheduleConstant {
-    String JOB_GROUP = "AnchorJob";
-    String TRIGGER_GROUP = "AnchorTrigger";
+    String JOB_GROUP = "AnchorJobs";
+    String TRIGGER_GROUP = "AnchorTriggers";
     String JOB_PACKAGE = "anchor.mybatis.quartz.job";
 
     Map<Trigger.TriggerState, String> JOB_STATUS = ImmutableMap.of(
