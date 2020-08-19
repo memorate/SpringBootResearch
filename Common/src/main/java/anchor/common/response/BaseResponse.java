@@ -1,10 +1,10 @@
 package anchor.common.response;
 
-import anchor.common.response.code.StatusCode;
+import anchor.common.status.StatusCode;
 
 import java.io.Serializable;
 
-import static anchor.common.response.code.DefaultStatus.SUCCESS;
+import static anchor.common.status.DefaultStatus.SUCCESS;
 
 public final class BaseResponse<T> implements Serializable {
 

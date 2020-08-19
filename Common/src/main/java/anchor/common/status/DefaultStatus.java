@@ -1,4 +1,4 @@
-package anchor.common.response.code;
+package anchor.common.status;
 
 public enum DefaultStatus implements StatusCode {
 

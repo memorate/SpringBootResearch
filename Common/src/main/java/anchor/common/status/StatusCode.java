@@ -1,4 +1,4 @@
-package anchor.common.response.code;
+package anchor.common.status;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
