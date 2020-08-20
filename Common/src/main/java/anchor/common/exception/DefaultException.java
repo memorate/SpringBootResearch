@@ -24,24 +24,12 @@ public class DefaultException extends RuntimeException {
         return code;
     }
 
-    public void setCode(StatusCode code) {
-        this.code = code;
-    }
-
     @Override
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getDetail() {
         return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
     }
 }

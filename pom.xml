@@ -12,7 +12,6 @@
         <module>SpringDataJPA</module>
         <module>SpringBootMybatis</module>
         <module>Common</module>
-        <module>DailyUse</module>
     </modules>
 
     <parent>
