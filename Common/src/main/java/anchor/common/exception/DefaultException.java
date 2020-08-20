@@ -8,28 +8,25 @@ public class DefaultException extends RuntimeException {
 
     private StatusCode code;
     private String message;
-    private String detail;
 
     public DefaultException(StatusCode code) {
-        super(code.message());
         this.code = code;
+        this.message = code.message();
+    }
+
+    public DefaultException(String message) {
+        this.message = message;
+    }
+
+    public DefaultException(StatusCode code, String message) {
+        super(message);
+        this.code = code;
+        this.message = message;
     }
 
     public DefaultException(StatusCode code, Throwable cause) {
         super(cause);
         this.code = code;
-    }
-
-    public StatusCode getCode() {
-        return code;
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    public String getDetail() {
-        return detail;
+        this.message = code.message();
     }
 }
