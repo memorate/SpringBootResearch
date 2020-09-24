@@ -2,6 +2,8 @@ package anchor.common.exception;
 
 import anchor.common.status.StatusCode;
 
+import static anchor.common.status.ErrorStatus.INTERNAL_ERROR;
+
 public class DefaultException extends RuntimeException {
 
     private static final long serialVersionUID = -8618092465858207782L;
@@ -15,6 +17,8 @@ public class DefaultException extends RuntimeException {
     }
 
     public DefaultException(String message) {
+        super(message);
+        this.code = INTERNAL_ERROR;
         this.message = message;
     }
 
@@ -28,5 +32,14 @@ public class DefaultException extends RuntimeException {
         super(cause);
         this.code = code;
         this.message = code.message();
+    }
+
+    public StatusCode getCode() {
+        return code;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
     }
 }
