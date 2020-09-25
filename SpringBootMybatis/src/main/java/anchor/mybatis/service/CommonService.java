@@ -27,4 +27,6 @@ public interface CommonService {
     QRCodeResponse postForResponseWithHeader(String content);
 
     ResponseEntity<QRCodeResponse> postForEntityWithHeader(String content);
+
+    void exceptionTest(String param, int type);
 }

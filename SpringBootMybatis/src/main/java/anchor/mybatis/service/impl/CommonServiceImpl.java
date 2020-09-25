@@ -1,5 +1,7 @@
 package anchor.mybatis.service.impl;
 
+import anchor.common.exception.DefaultException;
+import anchor.common.status.ErrorStatus;
 import anchor.mybatis.dto.UserDTO;
 import anchor.mybatis.entity.User;
 import anchor.mybatis.service.CommonService;
@@ -194,5 +196,13 @@ public class CommonServiceImpl implements CommonService {
         headers.add("app_secret", MXN_APP_SECRET);
         HttpEntity httpEntity = new HttpEntity(params, headers);
         return restTemplate.postForEntity(url, httpEntity, QRCodeResponse.class);
+    }
+
+    @Override
+    public void exceptionTest(String param, int type) {
+        if (param.isEmpty())
+            throw new DefaultException(ErrorStatus.PARAMETER_MISSING);
+        if (type != 0 && type != 1 && type != 2)
+            throw new DefaultException(ErrorStatus.PARAMETER_INVALID, "Type can only be 1 or 2");
     }
 }

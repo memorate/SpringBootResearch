@@ -1,5 +1,6 @@
 package anchor.mybatis.controller;
 
+import anchor.common.response.BaseResponse;
 import anchor.mybatis.service.CommonService;
 import anchor.mybatis.vo.MobileResponse;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,5 +29,11 @@ public class CommonController {
     @GetMapping("/getForResponse")
     public MobileResponse sendGetForResponse(@RequestParam String mobile) {
         return commonService.getForResponse(mobile);
+    }
+
+    @GetMapping("/exception")
+    public BaseResponse exceptionTest(@RequestParam String param, @RequestParam int type) {
+        commonService.exceptionTest(param, type);
+        return new BaseResponse();
     }
 }
