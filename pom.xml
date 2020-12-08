@@ -56,4 +56,31 @@
             <version>2.0.3.RELEASE</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.github.wilson-he</groupId>
+                <artifactId>generator-maven-plugin</artifactId>
+                <version>0.2.6</version>
+                <configuration>
+                    <basePackage>anchor.generator</basePackage>
+                    <isCleanBefore>true</isCleanBefore>
+                    <dataSource>
+                        <url>
+                            <![CDATA[jdbc:mysql://localhost:3306/jpa?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true]]>
+                        </url>
+                        <username>root</username>
+                        <password>anchor#123</password>
+                    </dataSource>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>center</id>
+            <url>https://mvnrepository.com/artifact/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

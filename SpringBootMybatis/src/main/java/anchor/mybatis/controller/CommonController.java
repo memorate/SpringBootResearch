@@ -3,10 +3,7 @@ package anchor.mybatis.controller;
 import anchor.common.response.BaseResponse;
 import anchor.mybatis.service.CommonService;
 import anchor.mybatis.vo.MobileResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -32,7 +29,7 @@ public class CommonController {
     }
 
     @GetMapping("/exception")
-    public BaseResponse exceptionTest(@RequestParam String param, @RequestParam int type) {
+    public BaseResponse exceptionTest(@RequestParam String param, @RequestParam int type, @RequestHeader String header) {
         commonService.exceptionTest(param, type);
         return new BaseResponse();
     }
