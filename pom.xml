@@ -4,10 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>love.anchor</groupId>
-    <artifactId>SpringBootResearch</artifactId>
+    <groupId>anchor.private</groupId>
+    <artifactId>spring-boot-research</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0</version>
+
+    <name>Anchor-SpringBoot</name>
+    <description>个人SpringBoot研究项目</description>
 
     <modules>
         <module>SpringDataJPA</module>
@@ -18,16 +21,21 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.0.RELEASE</version>
+        <version>2.3.5.RELEASE</version>
         <relativePath/>
     </parent>
 
     <properties>
         <junit.version>4.13</junit.version>
-        <powermock.junit4.version>2.0.7</powermock.junit4.version>
+        <powermock-junit4.version>2.0.7</powermock-junit4.version>
         <lombok.version>1.18.12</lombok.version>
         <hutool.version>5.4.2</hutool.version>
-        <springboot.quartz.version>2.0.3.RELEASE</springboot.quartz.version>
+        <quartz-starter.version>2.3.5.RELEASE</quartz-starter.version>
+        <mybatis-starter.version>2.0.0</mybatis-starter.version>
+        <mybatis-plus.starter.version>3.4.1</mybatis-plus.starter.version>
+        <easypoi-starter.version>4.2.0</easypoi-starter.version>
+        <pagehelper-starter.version>1.2.13</pagehelper-starter.version>
+        <jackson-databind.version>2.11.1</jackson-databind.version>
     </properties>
 
     <dependencies>
@@ -40,7 +48,7 @@
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
-            <version>${powermock.junit4.version}</version>
+            <version>${powermock-junit4.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -62,35 +70,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-quartz</artifactId>
-            <version>${springboot.quartz.version}</version>
+            <version>${quartz-starter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-spring-boot-starter</artifactId>
+            <version>${easypoi-starter.version}</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>io.github.wilson-he</groupId>
-                <artifactId>generator-maven-plugin</artifactId>
-                <version>0.2.7</version>
-                <configuration>
-                    <basePackage>anchor.generator</basePackage>
-                    <isCleanBefore>true</isCleanBefore>
-                    <inclusions>customer</inclusions>
-                    <dataSource>
-                        <url>
-                            <![CDATA[jdbc:mysql://localhost:3306/jpa?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true]]>
-                        </url>
-                        <username>root</username>
-                        <password>anchor#123</password>
-                    </dataSource>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>center</id>
-            <url>https://mvnrepository.com/artifact/</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>

@@ -3,15 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>SpringBootResearch</artifactId>
-        <groupId>love.anchor</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>anchor.private</groupId>
+        <artifactId>spring-boot-research</artifactId>
+        <version>2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>SpringBootMybatis</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>anchor.private</groupId>
+            <artifactId>spring-boot-common</artifactId>
+            <version>2.0</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -21,24 +26,45 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>love.anchor</groupId>
-            <artifactId>Common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-spring-boot-starter</artifactId>
-            <version>4.2.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.13</version>
+            <version>${pagehelper-starter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.starter.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.github.wilson-he</groupId>
+                <artifactId>generator-maven-plugin</artifactId>
+                <version>0.2.7</version>
+                <configuration>
+                    <basePackage>anchor.generator</basePackage>
+                    <isCleanBefore>true</isCleanBefore>
+                    <inclusions>customer</inclusions>
+                    <author>Anchor</author>
+                    <dataSource>
+                        <url>
+                            <![CDATA[jdbc:mysql://localhost:3306/jpa?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true]]>
+                        </url>
+                        <username>root</username>
+                        <password>anchor#123</password>
+                    </dataSource>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
