@@ -8,6 +8,7 @@
     <artifactId>SpringBootResearch</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>SpringDataJPA</module>
         <module>SpringBootMybatis</module>
@@ -21,23 +22,31 @@
         <relativePath/>
     </parent>
 
+    <properties>
+        <junit.version>4.13</junit.version>
+        <powermock.junit4.version>2.0.7</powermock.junit4.version>
+        <lombok.version>1.18.12</lombok.version>
+        <hutool.version>5.4.2</hutool.version>
+        <springboot.quartz.version>2.0.3.RELEASE</springboot.quartz.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
-            <version>2.0.7</version>
+            <version>${powermock.junit4.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -48,12 +57,12 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.4.2</version>
+            <version>${hutool.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-quartz</artifactId>
-            <version>2.0.3.RELEASE</version>
+            <version>${springboot.quartz.version}</version>
         </dependency>
     </dependencies>
 
@@ -62,10 +71,11 @@
             <plugin>
                 <groupId>io.github.wilson-he</groupId>
                 <artifactId>generator-maven-plugin</artifactId>
-                <version>0.2.6</version>
+                <version>0.2.7</version>
                 <configuration>
                     <basePackage>anchor.generator</basePackage>
                     <isCleanBefore>true</isCleanBefore>
+                    <inclusions>customer</inclusions>
                     <dataSource>
                         <url>
                             <![CDATA[jdbc:mysql://localhost:3306/jpa?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true]]>
