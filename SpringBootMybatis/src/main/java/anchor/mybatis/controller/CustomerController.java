@@ -1,26 +1,27 @@
-package anchor.mybatis.service;
+package anchor.mybatis.controller;
 
+import anchor.common.response.BaseResponse;
 import anchor.mybatis.entity.Customer;
-import anchor.mybatis.mapper.CustomerMapper;
-import org.junit.Assert;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import anchor.mybatis.service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class CustomerServiceTest {
+@Slf4j
+@RestController
+@RequestMapping("/api/customer")
+public class CustomerController {
 
     @Resource
-    private CustomerMapper mapper;
+    private CustomerService customerService;
 
-    @Test
-    public void initData() {
+    @PutMapping
+    public BaseResponse<Integer> initialize(){
         List<Customer> list = new ArrayList<>();
         list.add(new Customer("Jhonny", 22, 1, "132165465@gmail.com", "Anhui"));
         list.add(new Customer("Andy", 19, 1, "73578357@gmail.com", "Beijing"));
@@ -30,7 +31,6 @@ public class CustomerServiceTest {
         list.add(new Customer("Warren", 27, 1, "8673345657@gmail.com", "Chongqing"));
         list.add(new Customer("Buddie", 24, 3, "36787527@gmail.com", "Hebei"));
         list.add(new Customer("Larissa", 26, 2, "5678653455@gmail.com", "Qinghai"));
-        int success = mapper.insertBatch(list);
-        Assert.assertEquals(list.size(), success);
+        return new BaseResponse<>(customerService.insertBatch(list));
     }
 }
