@@ -19,12 +19,12 @@
         id, name, age, gender, mail, province, create_time, update_time
     </sql>
 
-    <insert id="insertBatch">
+    <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
         insert into customer
         (name, age, gender, mail, province)
         value
-        <foreach collection="list" item="item" open="(" close=")" separator=",">
-            #{item.name}, #{item.age}, #{item.gender}, #{item.mail}, #{item.province}
+        <foreach collection="list" item="item" separator=",">
+            (#{item.name}, #{item.age}, #{item.gender}, #{item.mail}, #{item.province})
         </foreach>
     </insert>
 </mapper>

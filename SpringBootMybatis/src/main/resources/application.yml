@@ -27,7 +27,9 @@ spring:
       org.quartz.jobStore.misfireThreshold: 60000
       org.quartz.jobStore.class: org.quartz.simpl.RAMJobStore
 
-mybatis:
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: anchor.mybatis.entity
   mapper-locations: classpath:mapping/*Mapper.xml
 

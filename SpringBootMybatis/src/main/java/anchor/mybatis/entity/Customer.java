@@ -27,13 +27,12 @@ public class Customer implements Serializable {
     /**
      * 用户id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 用户真实姓名
      */
     private String name;
-
     /**
      * 年龄
      */

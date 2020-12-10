@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService{
     private CustomerMapper customerMapper;
 
     @Override
-    public Integer insert(Customer customer){
+    public Long insert(Customer customer){
         customerMapper.insert(customer);
         return customer.getId();
     }

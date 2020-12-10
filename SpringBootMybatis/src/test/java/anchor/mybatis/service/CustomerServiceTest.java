@@ -2,16 +2,22 @@ package anchor.mybatis.service;
 
 import anchor.mybatis.entity.Customer;
 import anchor.mybatis.mapper.CustomerMapper;
-import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CustomerServiceTest {
@@ -31,6 +37,23 @@ public class CustomerServiceTest {
         list.add(new Customer("Buddie", 24, 3, "36787527@gmail.com", "Hebei"));
         list.add(new Customer("Larissa", 26, 2, "5678653455@gmail.com", "Qinghai"));
         int success = mapper.insertBatch(list);
-        Assert.assertEquals(list.size(), success);
+        assertEquals(list.size(), success);
+    }
+
+    @Test
+    public void selectOneTest() {
+        Customer jhonny = mapper.selectOne(
+                Wrappers.lambdaQuery(Customer.class)
+                        .eq(Customer::getName, "Jhonny"));
+        assertEquals(22, (int) jhonny.getAge());
+    }
+
+    @Test
+    public void selectListTest() {
+        List<Customer> list = mapper.selectList(Wrappers.lambdaQuery(Customer.class)
+                .ge(Customer::getAge, 20)
+                .le(Customer::getAge, 30)
+                .in(Customer::getProvince, Arrays.asList("Hubei", "Hebei")));
+        assertNotEquals(0, list.size());
     }
 }

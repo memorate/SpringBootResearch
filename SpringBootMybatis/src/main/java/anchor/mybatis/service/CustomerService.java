@@ -5,7 +5,7 @@ import anchor.mybatis.entity.Customer;
 import java.util.List;
 
 public interface CustomerService {
-    Integer insert(Customer customer);
+    Long insert(Customer customer);
 
     Integer insertBatch(List<Customer> list);
 
