@@ -14,7 +14,7 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
-        <!-- 通用查询结果列 -->
+    <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, age, gender, mail, province, create_time, update_time
     </sql>
@@ -27,4 +27,29 @@
             (#{item.name}, #{item.age}, #{item.gender}, #{item.mail}, #{item.province})
         </foreach>
     </insert>
+
+    <select id="listByQuery" resultType="anchor.mybatis.entity.Customer">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where age &gt;= #{startAge} and age &lt;= #{endAge} and gender = #{customerGender}
+        and province in
+        <foreach collection="provinces" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        order by name
+    </select>
+
+    <select id="findByTime" resultType="anchor.mybatis.entity.Customer">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where gender = #{gender}
+        <if test="end != null">
+            and update_time >= #{start}
+        </if>
+        <if test="end != null">
+            and update_time <= #{end}
+        </if>
+    </select>
 </mapper>

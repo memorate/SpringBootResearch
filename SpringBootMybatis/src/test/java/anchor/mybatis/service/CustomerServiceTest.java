@@ -2,6 +2,7 @@ package anchor.mybatis.service;
 
 import anchor.mybatis.entity.Customer;
 import anchor.mybatis.mapper.CustomerMapper;
+import anchor.mybatis.query.CustomerQuery;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -37,7 +38,15 @@ public class CustomerServiceTest {
         list.add(new Customer("Buddie", 24, 3, "36787527@gmail.com", "Hebei"));
         list.add(new Customer("Larissa", 26, 2, "5678653455@gmail.com", "Qinghai"));
         int success = mapper.insertBatch(list);
+        log.info(list.get(0).toString());
         assertEquals(list.size(), success);
+    }
+
+    @Test
+    public void insertOne() {
+        Customer customer = new Customer("Mark", 29, 1, "65465512@gmail.com", "Anhui");
+        mapper.insert(customer);
+        log.info(customer.toString());
     }
 
     @Test
@@ -55,5 +64,26 @@ public class CustomerServiceTest {
                 .le(Customer::getAge, 30)
                 .in(Customer::getProvince, Arrays.asList("Hubei", "Hebei")));
         assertNotEquals(0, list.size());
+    }
+
+    @Test
+    public void simpleDeleteTest() {
+        int num = mapper.delete(Wrappers.lambdaQuery(Customer.class)
+                .eq(Customer::getGender, 1)
+                .ge(Customer::getAge, 20)
+                .le(Customer::getAge, 30)
+                .in(Customer::getProvince, Arrays.asList("Hubei", "Chongqing", "Beijing"))
+        );
+    }
+
+    @Test
+    public void queryTest() {
+        CustomerQuery query = new CustomerQuery()
+                .setStartAge(20)
+                .setEndAge(30)
+                .setCustomerGender(1)
+                .setProvinces(Arrays.asList("Hubei", "Chongqing", "Beijing"));
+        List<Customer> list = mapper.listByQuery(query);
+        log.info(list.toString());
     }
 }

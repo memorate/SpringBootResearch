@@ -1,5 +1,7 @@
 package anchor.mybatis.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ public class Customer implements Serializable {
     /**
      * 用户id
      */
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
