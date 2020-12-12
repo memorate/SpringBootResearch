@@ -46,10 +46,10 @@
         from customer
         where gender = #{gender}
         <if test="end != null">
-            and update_time >= #{start}
+            and update_time &gt;= #{start}
         </if>
         <if test="end != null">
-            and update_time <= #{end}
+            and update_time &lt;= #{end}
         </if>
     </select>
 </mapper>

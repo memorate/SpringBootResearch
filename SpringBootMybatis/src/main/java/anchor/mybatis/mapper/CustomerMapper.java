@@ -15,5 +15,6 @@ public interface CustomerMapper extends BaseMapper<Customer> {
 
     List<Customer> listByQuery(CustomerQuery query);
 
-    List<Customer> findByTime(@Param("start")LocalDateTime startTime, @Param("end")LocalDateTime endTime);
+    List<Customer> findByTime(@Param("start")LocalDateTime startTime,
+                              @Param("end")LocalDateTime endTime);
 }
