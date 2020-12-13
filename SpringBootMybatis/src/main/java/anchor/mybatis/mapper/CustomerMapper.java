@@ -13,8 +13,13 @@ import java.util.List;
 public interface CustomerMapper extends BaseMapper<Customer> {
     int insertBatch(List<Customer> list);
 
+    List<Customer> findLikeName(String name);
+
     List<Customer> listByQuery(CustomerQuery query);
 
-    List<Customer> findByTime(@Param("start")LocalDateTime startTime,
-                              @Param("end")LocalDateTime endTime);
+    List<Customer> findByTime(@Param("gender") Integer gender,
+                              @Param("start") LocalDateTime startTime,
+                              @Param("end") LocalDateTime endTime);
+
+    int update();
 }

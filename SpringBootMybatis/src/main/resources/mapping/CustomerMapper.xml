@@ -19,6 +19,15 @@
         id, name, age, gender, mail, province, create_time, update_time
     </sql>
 
+    <select id="findLikeName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        <if test="name != null and name !=''">
+            where name like concat ('%', #{name} ,'%')
+        </if>
+    </select>
+
     <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
         insert into customer
         (name, age, gender, mail, province)
@@ -45,11 +54,22 @@
         <include refid="Base_Column_List"/>
         from customer
         where gender = #{gender}
-        <if test="end != null">
+        <if test="start != null">
             and update_time &gt;= #{start}
         </if>
         <if test="end != null">
             and update_time &lt;= #{end}
         </if>
     </select>
+
+    <update id="update">
+        update customer set name = 
+        case
+            when name = 'Jhonny' then 'aa'
+            when name = 'Andy' then 'bb'
+            else 'cc'
+            end
+        where gender = 1;
+    </update>
+
 </mapper>

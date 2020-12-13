@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,15 +39,14 @@ public class CustomerServiceTest {
         list.add(new Customer("Buddie", 24, 3, "36787527@gmail.com", "Hebei"));
         list.add(new Customer("Larissa", 26, 2, "5678653455@gmail.com", "Qinghai"));
         int success = mapper.insertBatch(list);
-        log.info(list.get(0).toString());
         assertEquals(list.size(), success);
     }
 
     @Test
     public void insertOne() {
         Customer customer = new Customer("Mark", 29, 1, "65465512@gmail.com", "Anhui");
-        mapper.insert(customer);
-        log.info(customer.toString());
+        int num = mapper.insert(customer);
+        assertEquals(1, num);
     }
 
     @Test
@@ -67,6 +67,12 @@ public class CustomerServiceTest {
     }
 
     @Test
+    public void findByNameTest() {
+        List<Customer> list = mapper.findLikeName("Jhonny");
+        assertEquals("Jhonny", list.get(0).getName());
+    }
+
+    @Test
     public void simpleDeleteTest() {
         int num = mapper.delete(Wrappers.lambdaQuery(Customer.class)
                 .eq(Customer::getGender, 1)
@@ -74,6 +80,7 @@ public class CustomerServiceTest {
                 .le(Customer::getAge, 30)
                 .in(Customer::getProvince, Arrays.asList("Hubei", "Chongqing", "Beijing"))
         );
+        assertNotEquals(0, num);
     }
 
     @Test
@@ -84,6 +91,20 @@ public class CustomerServiceTest {
                 .setCustomerGender(1)
                 .setProvinces(Arrays.asList("Hubei", "Chongqing", "Beijing"));
         List<Customer> list = mapper.listByQuery(query);
-        log.info(list.toString());
+        assertNotEquals(0, list.size());
+    }
+
+    @Test
+    public void timeTest() {
+        LocalDateTime start = LocalDateTime.of(2020, 12, 12, 18, 13, 0);
+        LocalDateTime end = LocalDateTime.of(2020, 12, 12, 18, 16, 0);
+        List<Customer> list = mapper.findByTime(1, start, end);
+        assertNotEquals(0, list.size());
+    }
+
+    @Test
+    public void updateTest() {
+        int num = mapper.update();
+        assertNotEquals(0, num);
     }
 }
