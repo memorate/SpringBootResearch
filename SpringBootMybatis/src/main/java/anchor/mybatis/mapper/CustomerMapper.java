@@ -3,7 +3,6 @@ package anchor.mybatis.mapper;
 import anchor.mybatis.entity.Customer;
 import anchor.mybatis.query.CustomerQuery;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -17,9 +16,7 @@ public interface CustomerMapper extends BaseMapper<Customer> {
 
     List<Customer> listByQuery(CustomerQuery query);
 
-    List<Customer> findByTime(@Param("gender") Integer gender,
-                              @Param("start") LocalDateTime startTime,
-                              @Param("end") LocalDateTime endTime);
+    List<Customer> findByTime(Integer gender, LocalDateTime startTime, LocalDateTime endTime);
 
     int update();
 }

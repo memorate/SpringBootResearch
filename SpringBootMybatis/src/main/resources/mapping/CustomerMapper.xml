@@ -54,11 +54,11 @@
         <include refid="Base_Column_List"/>
         from customer
         where gender = #{gender}
-        <if test="start != null">
-            and update_time &gt;= #{start}
+        <if test="startTime != null">
+            and update_time &gt;= #{startTime}
         </if>
-        <if test="end != null">
-            and update_time &lt;= #{end}
+        <if test="endTime != null">
+            and update_time &lt;= #{endTime}
         </if>
     </select>
 

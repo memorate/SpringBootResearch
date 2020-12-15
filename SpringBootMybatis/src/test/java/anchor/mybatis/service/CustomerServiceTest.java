@@ -96,8 +96,8 @@ public class CustomerServiceTest {
 
     @Test
     public void timeTest() {
-        LocalDateTime start = LocalDateTime.of(2020, 12, 12, 18, 13, 0);
-        LocalDateTime end = LocalDateTime.of(2020, 12, 12, 18, 16, 0);
+        LocalDateTime start = LocalDateTime.of(2020, 12, 11, 15, 4, 0);
+        LocalDateTime end = LocalDateTime.of(2020, 12, 11, 15, 6, 0);
         List<Customer> list = mapper.findByTime(1, start, end);
         assertNotEquals(0, list.size());
     }

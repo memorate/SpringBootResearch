@@ -30,7 +30,6 @@
         <lombok.version>1.18.12</lombok.version>
         <hutool.version>5.4.2</hutool.version>
         <quartz-starter.version>2.3.5.RELEASE</quartz-starter.version>
-        <mybatis-starter.version>2.0.0</mybatis-starter.version>
         <mybatis-plus.starter.version>3.4.1</mybatis-plus.starter.version>
         <easypoi-starter.version>4.2.0</easypoi-starter.version>
         <pagehelper-starter.version>1.2.13</pagehelper-starter.version>
