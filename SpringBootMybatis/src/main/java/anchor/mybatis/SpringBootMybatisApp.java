@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
 @MapperScan("anchor.mybatis.mapper")
-@SpringBootApplication(scanBasePackages = {"anchor.mybatis.*","anchor.common.*"})
+@SpringBootApplication
 public class SpringBootMybatisApp {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootMybatisApp.class, args);
-        log.info("Anchor-Mybatis Researcher start success...");
+        log.info("Anchor-Mybatis Researcher 启动成功...");
     }
 }

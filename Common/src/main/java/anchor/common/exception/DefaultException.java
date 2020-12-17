@@ -1,6 +1,6 @@
 package anchor.common.exception;
 
-import anchor.common.status.ErrorStatus;
+import anchor.common.status.DefaultStatus;
 import anchor.common.status.StatusCode;
 
 public final class DefaultException extends RuntimeException {
@@ -10,13 +10,16 @@ public final class DefaultException extends RuntimeException {
     private StatusCode code;
     private String message;
 
+    public DefaultException() {
+    }
+
     public DefaultException(StatusCode code) {
         this.code = code;
         this.message = code.message();
     }
 
     public DefaultException(String message) {
-        this.code = ErrorStatus.INTERNAL_ERROR;
+        this.code = DefaultStatus.INTERNAL_ERROR;
         this.message = message;
     }
 

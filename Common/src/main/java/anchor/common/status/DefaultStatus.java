@@ -8,7 +8,7 @@ public enum DefaultStatus implements StatusCode {
 
     NOT_FOUND(404, "Resource not found"),
 
-    FAILURE(500, "Application internal error");
+    INTERNAL_ERROR(500,"Application internal error");
 
     private final int code;
     private final String message;

@@ -200,8 +200,8 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public void exceptionTest(String param, int type) {
-        List<String> list = null;
-        log.info(list.get(0));
+//        List<String> list = null;
+//        log.info(list.get(0));
         if (param.isEmpty())
             throw new DefaultException(ErrorStatus.PARAMETER_MISSING);
         if (type != 0 && type != 1 && type != 2)

@@ -2,7 +2,6 @@ package anchor.common.status;
 
 public enum ErrorStatus implements StatusCode{
 
-    INTERNAL_ERROR(500,"System internal error"),
     PARAMETER_MISSING(10001,"Missing required parameter"),
     PARAMETER_INVALID(10002,"Invalid parameter"),
     RESOURCE_NOT_FOUND(10003,"Resource not found"),
