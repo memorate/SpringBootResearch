@@ -3,6 +3,7 @@ package anchor.mybatis.service.impl;
 import anchor.common.exception.DefaultException;
 import anchor.common.status.ErrorStatus;
 import anchor.mybatis.dto.UserDTO;
+import anchor.mybatis.entity.Customer;
 import anchor.mybatis.entity.User;
 import anchor.mybatis.service.CommonService;
 import anchor.mybatis.service.UserService;
@@ -12,7 +13,6 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.math3.exception.OutOfRangeException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
@@ -203,9 +203,13 @@ public class CommonServiceImpl implements CommonService {
     public void exceptionTest(String param, int type) {
         if (type == 0)
             throw new DefaultException(ErrorStatus.PARAMETER_INVALID, "Type is 1");
-        if (type == 1)
-            throw new NullPointerException();
-        if (type == 2)
-            throw new OutOfRangeException(1, 2, 3L);
+        if (type == 1) {
+            Customer c = null;
+            c.getAge();
+        }
+        if (type == 2) {
+            int i[] = {1, 2, 3};
+            int i1 = i[3];
+        }
     }
 }

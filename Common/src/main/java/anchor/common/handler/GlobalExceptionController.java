@@ -2,7 +2,7 @@ package anchor.common.handler;
 
 
 import anchor.common.response.BaseResponse;
-import anchor.common.status.StatusCode;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,38 +25,16 @@ public class GlobalExceptionController implements ErrorController {
     }
 
     @RequestMapping(path = ERROR_PATH)
-    public BaseResponse<String> error(HttpServletRequest request, HttpServletResponse response) {
+    public BaseResponse<String> error(HttpServletRequest request, HttpServletResponse response, Exception e) {
         ServletWebRequest webRequest = new ServletWebRequest(request);
-//        Exception exception = (Exception) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-//        Throwable cause = exception.getCause();
-//        String message = exception.getMessage();
-        Map<String, Object> errorAttributes = attributes.getErrorAttributes(webRequest, false);
-        BaseResponse<String> info = new BaseResponse<>();
-        return info;
+        Throwable error = attributes.getError(webRequest);
+        Map<String, Object> map = attributes.getErrorAttributes(webRequest, ErrorAttributeOptions.defaults());
+        BaseResponse<String> baseResponse = new BaseResponse<>();
+        return baseResponse;
     }
 
     @Override
     public String getErrorPath() {
         return ERROR_PATH;
-    }
-
-    class Error implements StatusCode {
-        Integer code;
-        String message;
-
-        public Error(Integer code, String message) {
-            this.code = code;
-            this.message = message;
-        }
-
-        @Override
-        public int code() {
-            return code;
-        }
-
-        @Override
-        public String message() {
-            return message;
-        }
     }
 }
