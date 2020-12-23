@@ -14,11 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAdvice {
 
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
-    private void pointcut(){}
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
+    private void pointcut() {
+    }
 
     @Before("pointcut()")
-    public void logAdvice(){
-        log.info("Entering RequestMapping...");
+    public void logAdvice() {
+        log.info("Entering GetMapping...");
     }
 }
