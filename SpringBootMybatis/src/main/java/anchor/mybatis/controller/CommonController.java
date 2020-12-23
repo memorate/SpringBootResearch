@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * @author Anchor
+ */
 @RestController
 @RequestMapping("/common")
 public class CommonController {

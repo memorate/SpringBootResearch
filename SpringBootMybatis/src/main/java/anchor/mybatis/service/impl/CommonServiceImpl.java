@@ -201,8 +201,9 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public void exceptionTest(String param, int type) {
-        if (type == 0)
+        if (type == 0) {
             throw new DefaultException(ErrorStatus.PARAMETER_INVALID, "Type is 1");
+        }
         if (type == 1) {
             Customer c = null;
             c.getAge();

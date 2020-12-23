@@ -29,20 +29,14 @@
         <powermock-junit4.version>2.0.7</powermock-junit4.version>
         <lombok.version>1.18.12</lombok.version>
         <hutool.version>5.4.2</hutool.version>
-        <quartz-starter.version>2.3.5.RELEASE</quartz-starter.version>
         <mybatis-plus.starter.version>3.4.1</mybatis-plus.starter.version>
         <easypoi-starter.version>4.2.0</easypoi-starter.version>
         <pagehelper-starter.version>1.2.13</pagehelper-starter.version>
         <jackson-databind.version>2.11.1</jackson-databind.version>
-        <aop-startr.version>2.4.1</aop-startr.version>
+        <anchor.common.version>2.0</anchor.common.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>anchor.private</groupId>
-            <artifactId>spring-boot-common</artifactId>
-            <version>2.0</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -76,7 +70,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-quartz</artifactId>
-            <version>${quartz-starter.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.afterturn</groupId>
@@ -86,8 +79,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-            <version>${aop-startr.version}</version>
         </dependency>
-
     </dependencies>
 </project>

@@ -13,6 +13,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>anchor.private</groupId>
+            <artifactId>spring-boot-common</artifactId>
+            <version>${anchor.common.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pagehelper-starter.version}</version>
