@@ -1,9 +1,8 @@
 package anchor.mybatis.aop;
 
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,12 +13,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAdvice {
 
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
+    @Pointcut("execution(* anchor.mybatis.controller.CommonController.aopTest(..))")
     private void pointcut() {
     }
 
     @Before("pointcut()")
-    public void logAdvice() {
-        log.info("Entering GetMapping...");
+    public void before() {
+        log.info("Before advice...");
+    }
+
+    @After("pointcut()")
+    public void after() {
+        log.info("After advice...");
+    }
+
+    @AfterReturning(value = "pointcut()",returning = "result")
+    public void afterReturning(Object result) {
+        log.info("AfterReturning advice, return value is {}...", result);
+    }
+
+    @Around(value = "pointcut()")
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        log.info("Around advice...");
+        return joinPoint.proceed();
     }
 }

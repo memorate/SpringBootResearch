@@ -209,8 +209,14 @@ public class CommonServiceImpl implements CommonService {
             c.getAge();
         }
         if (type == 2) {
-            int i[] = {1, 2, 3};
+            int[] i = {1, 2, 3};
             int i1 = i[3];
         }
+    }
+
+    @Override
+    public boolean aopTest() {
+        log.info("Executing aopTest()");
+        return true;
     }
 }

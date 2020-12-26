@@ -29,4 +29,6 @@ public interface CommonService {
     ResponseEntity<QRCodeResponse> postForEntityWithHeader(String content);
 
     void exceptionTest(String param, int type);
+
+    boolean aopTest();
 }

@@ -36,4 +36,9 @@ public class CommonController {
         commonService.exceptionTest(param, type);
         return new BaseResponse();
     }
+
+    @GetMapping("/aopTest")
+    public BaseResponse<Boolean> aopTest(){
+        return new BaseResponse<>(commonService.aopTest());
+    }
 }
