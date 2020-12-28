@@ -13,28 +13,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAdvice {
 
-    @Pointcut("execution(* anchor.mybatis.controller.CommonController.aopTest(..))")
-    private void pointcut() {
-    }
-
-    @Before("pointcut()")
+    @Before("CommonPointcut.aopTestMethod()")
     public void before() {
         log.info("Before advice...");
     }
 
-    @After("pointcut()")
+    @After("CommonPointcut.aopTestMethod()")
     public void after() {
         log.info("After advice...");
     }
 
-    @AfterReturning(value = "pointcut()",returning = "result")
+    @AfterReturning(value = "CommonPointcut.aopTestMethod()", returning = "result")
     public void afterReturning(Object result) {
         log.info("AfterReturning advice, return value is {}...", result);
     }
 
-    @Around(value = "pointcut()")
+    @Around(value = "CommonPointcut.aopTestMethod()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("Around advice...");
-        return joinPoint.proceed();
+        log.info("Entering around advice...");
+        Object proceed = joinPoint.proceed();
+        log.info("Existing around advice...");
+        return proceed;
     }
 }

@@ -1,6 +1,7 @@
 package anchor.mybatis.controller;
 
 import anchor.common.response.BaseResponse;
+import anchor.mybatis.aop.LogTag;
 import anchor.mybatis.service.CommonService;
 import anchor.mybatis.vo.MobileResponse;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,7 @@ public class CommonController {
         return new BaseResponse();
     }
 
+    @LogTag
     @GetMapping("/aopTest")
     public BaseResponse<Boolean> aopTest(){
         return new BaseResponse<>(commonService.aopTest());
