@@ -13,26 +13,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAdvice {
 
-    @Before("CommonPointcut.aopTestMethod()")
+    @Before("CommonPointcut.executionExp1()")
     public void before() {
         log.info("Before advice...");
     }
 
-    @After("CommonPointcut.aopTestMethod()")
+    @After("CommonPointcut.executionExp1()")
     public void after() {
         log.info("After advice...");
     }
 
-    @AfterReturning(value = "CommonPointcut.aopTestMethod()", returning = "result")
+    @AfterReturning(value = "CommonPointcut.executionExp1()", returning = "result")
     public void afterReturning(Object result) {
         log.info("AfterReturning advice, return value is {}...", result);
     }
 
-    @Around(value = "CommonPointcut.aopTestMethod()")
+    @AfterThrowing(value = "CommonPointcut.executionExp1()", throwing = "exception")
+    public void afterReturning(Exception exception) {
+        log.info("AfterThrowing advice, exception is {}...", exception.toString());
+    }
+
+    @Around(value = "CommonPointcut.executionExp1()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("Entering around advice...");
         Object proceed = joinPoint.proceed();
-        log.info("Existing around advice...");
+        log.info("Exiting around advice...");
         return proceed;
     }
 }
