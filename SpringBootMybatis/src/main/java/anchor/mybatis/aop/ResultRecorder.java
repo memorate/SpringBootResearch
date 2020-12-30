@@ -8,9 +8,8 @@ import java.lang.annotation.Target;
 /**
  * @author Anchor
  */
-
-@Target(ElementType.METHOD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface LogTag {
+public @interface ResultRecorder {
     String value();
 }
