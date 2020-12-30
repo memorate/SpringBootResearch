@@ -1,9 +1,12 @@
 package anchor.mybatis.aop;
 
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 /**
  * @author Anchor
@@ -14,11 +17,14 @@ import org.springframework.stereotype.Component;
 public class LogAdvice {
 
     @Before("CommonPointcut.executionExp1()")
-    public void before() {
+    public void before(JoinPoint joinPoint) {
         log.info("Before advice...");
+        System.out.println(Arrays.toString(joinPoint.getArgs()));
+        System.out.println(joinPoint.toLongString());
+        System.out.println(joinPoint.getSignature().toLongString());
     }
 
-    @After("CommonPointcut.executionExp1()")
+    @After("execution(* anchor.mybatis.controller.CommonController.aopTest(..))")
     public void after() {
         log.info("After advice...");
     }
@@ -34,9 +40,15 @@ public class LogAdvice {
     }
 
     @Around(value = "CommonPointcut.executionExp1()")
-    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object around(ProceedingJoinPoint joinPoint) {
         log.info("Entering around advice...");
-        Object proceed = joinPoint.proceed();
+        Object proceed;
+        try {
+            proceed = joinPoint.proceed();
+        } catch (Throwable throwable) {
+            proceed = throwable;
+            log.info("Around catch an exception,exception is {}...", throwable.toString());
+        }
         log.info("Exiting around advice...");
         return proceed;
     }
