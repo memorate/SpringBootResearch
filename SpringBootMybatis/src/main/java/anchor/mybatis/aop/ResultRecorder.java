@@ -11,5 +11,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ResultRecorder {
+    /**
+     * RestFul中所操作的资源名，例：用户、订单、地址
+     */
     String value();
 }

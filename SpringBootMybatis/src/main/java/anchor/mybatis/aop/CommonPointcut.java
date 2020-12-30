@@ -40,6 +40,9 @@ public class CommonPointcut {
     @Pointcut("@annotation(anchor.mybatis.aop.LogTag)")
     public void annotationExp() {}
 
+    @Pointcut("@annotation(ResultRecorder)")
+    public void resultRecorder(){}
+
     @Pointcut("bean(commonController)")
     public void beanExp(){}
 }
