@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
  */
 public class CommonPointcut {
 
-    @Pointcut("execution(* anchor.mybatis.controller.CommonController.aopTest(..))")
+    @Pointcut("execution(* anchor.mybatis.controller.CommonController.exportUsers(..))")
     public void executionExp1() {}
 
     @Pointcut("execution(String anchor.mybatis..*(*,String))")
@@ -40,7 +40,7 @@ public class CommonPointcut {
     @Pointcut("@annotation(anchor.mybatis.aop.LogTag)")
     public void annotationExp() {}
 
-    @Pointcut("@annotation(ResultRecorder)")
+    @Pointcut("@within(ResultRecorder)")
     public void resultRecorder(){}
 
     @Pointcut("bean(commonController)")

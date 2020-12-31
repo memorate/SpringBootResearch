@@ -1,6 +1,7 @@
 package anchor.mybatis.controller;
 
 import anchor.common.response.BaseResponse;
+import anchor.mybatis.aop.ResultRecorder;
 import anchor.mybatis.service.CommonService;
 import anchor.mybatis.vo.MobileResponse;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import javax.annotation.Resource;
 /**
  * @author Anchor
  */
+@ResultRecorder("公共资源")
 @RestController
 @RequestMapping("/common")
 public class CommonController {
