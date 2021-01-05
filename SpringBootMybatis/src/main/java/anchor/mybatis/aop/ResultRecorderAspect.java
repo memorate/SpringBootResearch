@@ -24,9 +24,7 @@ public class ResultRecorderAspect {
     @Around("CommonPointcut.resultRecorder()")
     public Object resultRecord(ProceedingJoinPoint joinPoint) throws Throwable {
         OperationLog operation = new OperationLog()
-                .setTime(LocalDateTime.now())
-                .setUid("Anchor")
-                .setUname("Anchor");
+                .setTime(LocalDateTime.now());
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         ResultRecorder annotation = joinPoint.getTarget().getClass().getAnnotation(ResultRecorder.class);
         operation.setResource(annotation.value());
