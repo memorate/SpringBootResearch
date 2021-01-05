@@ -23,30 +23,31 @@ import java.time.LocalDateTime;
 public class ResultRecorderAspect {
     @Around("CommonPointcut.resultRecorder()")
     public Object resultRecord(ProceedingJoinPoint joinPoint) throws Throwable {
-        OperationLog log = new OperationLog()
-                .setTime(LocalDateTime.now());
-        //SysUser user = SystemUserHolder.getCurrent()
+        OperationLog operation = new OperationLog()
+                .setTime(LocalDateTime.now())
+                .setUid("Anchor")
+                .setUname("Anchor");
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         ResultRecorder annotation = joinPoint.getTarget().getClass().getAnnotation(ResultRecorder.class);
-        log.setResource(annotation.value());
-        log.setMethod(signature.toShortString());
+        operation.setResource(annotation.value());
+        operation.setMethod(signature.toShortString());
         try {
             Object result = joinPoint.proceed();
             if (result instanceof BaseResponse) {
                 BaseResponse response = (BaseResponse) result;
-                log.setCode(response.getCode().code());
-                log.setMessage(response.getMessage());
+                operation.setCode(response.getCode().code());
+                operation.setMessage(response.getMessage());
             } else {
-                log.setCode(500);
-                log.setMessage("Can't recognize the method's response.");
+                operation.setCode(500);
+                operation.setMessage("Can't recognize the method's response.");
             }
             return result;
         } catch (Throwable throwable) {
-            log.setCode(500);
-            log.setMessage(throwable.getMessage());
+            operation.setCode(500);
+            operation.setMessage(throwable.getMessage());
             throw throwable;
         } finally {
-            System.out.println(log);
+            log.info(operation.toString());
         }
     }
 }

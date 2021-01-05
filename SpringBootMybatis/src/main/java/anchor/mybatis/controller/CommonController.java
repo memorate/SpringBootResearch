@@ -43,4 +43,10 @@ public class CommonController {
     public BaseResponse<Boolean> aopTest(String aa, String bb){
         return new BaseResponse<>(commonService.aopTest());
     }
+
+    @GetMapping
+    public BaseResponse<Boolean> annotationTest(){
+        System.out.println("Executing annotationTest()...");
+        return new BaseResponse<>(true);
+    }
 }
