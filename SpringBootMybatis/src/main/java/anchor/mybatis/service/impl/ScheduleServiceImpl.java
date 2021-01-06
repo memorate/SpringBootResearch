@@ -20,6 +20,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Resource
     private Scheduler scheduler;
 
+    @Override
     public Date addAndStartSimpleJob(Class<? extends Job> jobClass, Trigger trigger) throws SchedulerException {
         String jobName = jobClass.getName();
         JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, JOB_GROUP).storeDurably().build();
