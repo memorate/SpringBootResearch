@@ -8,4 +8,9 @@ public class NormalRentService implements Rent {
     public void rentHouse() {
         System.out.println("Rent a normal house to user...");
     }
+
+    @Override
+    public Rent getProxy() {
+        return new RentProxy(this);
+    }
 }

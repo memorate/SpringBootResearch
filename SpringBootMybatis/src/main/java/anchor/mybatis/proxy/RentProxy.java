@@ -14,4 +14,9 @@ public class RentProxy implements Rent{
         rent.rentHouse();
         System.out.println("Rent successfully,i earned one billion...");
     }
+
+    @Override
+    public Rent getProxy() {
+        return this;
+    }
 }

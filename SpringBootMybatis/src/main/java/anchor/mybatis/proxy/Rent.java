@@ -5,4 +5,6 @@ package anchor.mybatis.proxy;
  */
 public interface Rent {
     void rentHouse();
+
+    Rent getProxy();
 }

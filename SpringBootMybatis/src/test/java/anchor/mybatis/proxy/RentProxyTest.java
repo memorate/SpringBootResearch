@@ -5,16 +5,14 @@ import org.junit.jupiter.api.Test;
 class RentProxyTest {
 
     @Test
-    void proxyTest1() {
-        NormalRentService service = new NormalRentService();
-        RentProxy proxy = new RentProxy(service);
+    void normalRentTest() {
+        RentProxy proxy = (RentProxy) new NormalRentService().getProxy();
         proxy.rentHouse();
     }
 
     @Test
-    void proxyTest2() {
-        VillaRentService service = new VillaRentService();
-        RentProxy proxy = new RentProxy(service);
+    void villaRentTest() {
+        RentProxy proxy = new RentProxy(new VillaRentService().getProxy());
         proxy.rentHouse();
     }
 }
