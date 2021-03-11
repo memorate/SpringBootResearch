@@ -3,6 +3,9 @@ package anchor.mybatis.object.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author Anchor
+ */
 @Data
 @NoArgsConstructor
 public class User {

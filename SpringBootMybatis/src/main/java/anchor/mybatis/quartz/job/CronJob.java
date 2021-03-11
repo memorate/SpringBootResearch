@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author Anchor
+ */
 public class CronJob extends QuartzJobBean {
 
     private final static AtomicInteger counter = new AtomicInteger(1);

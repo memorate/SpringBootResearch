@@ -2,6 +2,9 @@ package anchor.mybatis.object.vo;
 
 import lombok.Data;
 
+/**
+ * @author Anchor
+ */
 @Data
 public class MobileResponse extends MXNResponse{
     private Data data;

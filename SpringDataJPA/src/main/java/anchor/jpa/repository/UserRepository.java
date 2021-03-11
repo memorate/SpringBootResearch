@@ -13,6 +13,9 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * @author Anchor
+ */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     /*************************************普通约定方法使用*****************************************/

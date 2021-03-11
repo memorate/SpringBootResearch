@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * @author Anchor
+ */
 @Repository
 public interface CustomerMapper extends BaseMapper<Customer> {
     int insertBatch(List<Customer> list);

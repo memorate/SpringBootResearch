@@ -7,6 +7,9 @@ import org.quartz.Trigger;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Anchor
+ */
 public interface ScheduleService {
 
     Date addAndStartSimpleJob(Class<? extends Job> jobClass, Trigger trigger) throws SchedulerException;

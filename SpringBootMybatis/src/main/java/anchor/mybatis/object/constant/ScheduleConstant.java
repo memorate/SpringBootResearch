@@ -5,6 +5,9 @@ import org.quartz.Trigger;
 
 import java.util.Map;
 
+/**
+ * @author Anchor
+ */
 public interface ScheduleConstant {
     String JOB_GROUP = "AnchorJobs";
     String TRIGGER_GROUP = "AnchorTriggers";

@@ -4,6 +4,9 @@ import anchor.mybatis.object.entity.Customer;
 
 import java.util.List;
 
+/**
+ * @author Anchor
+ */
 public interface CustomerService {
 
     Long insert(Customer customer);

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
+/**
+ * @author Anchor
+ */
 @RestController
 public class GlobalExceptionController implements ErrorController {
 

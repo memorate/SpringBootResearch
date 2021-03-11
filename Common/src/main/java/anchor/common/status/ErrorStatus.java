@@ -3,7 +3,6 @@ package anchor.common.status;
 /**
  * @author Anchor
  */
-
 public enum ErrorStatus implements StatusCode{
 
     PARAMETER_MISSING(10001,"Missing required parameter"),

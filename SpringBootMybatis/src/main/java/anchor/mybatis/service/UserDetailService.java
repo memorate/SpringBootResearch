@@ -4,6 +4,9 @@ import anchor.mybatis.object.entity.UserDetail;
 
 import java.util.List;
 
+/**
+ * @author Anchor
+ */
 public interface UserDetailService {
     
     int saveOne(UserDetail detail);

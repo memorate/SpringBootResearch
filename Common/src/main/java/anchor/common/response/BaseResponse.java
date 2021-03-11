@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 import static anchor.common.status.DefaultStatus.SUCCESS;
 
+/**
+ * @author Anchor
+ */
 public final class BaseResponse<T> implements Serializable {
 
     private static final long serialVersionUID = 3886133510113334083L;

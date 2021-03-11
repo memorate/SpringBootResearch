@@ -5,6 +5,9 @@ import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
+/**
+ * @author Anchor
+ */
 public interface UserService {
     Long saveOne(User user);
 

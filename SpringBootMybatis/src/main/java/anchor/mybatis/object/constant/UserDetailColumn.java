@@ -1,6 +1,8 @@
 package anchor.mybatis.object.constant;
 
+
 /**
+ * @author Anchor
  * Table detail's column name
  */
 public interface UserDetailColumn {

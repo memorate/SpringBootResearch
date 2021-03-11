@@ -16,6 +16,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+/**
+ * @author Anchor
+ */
 public class AvatarExportApp {
     //头像本地保存的路径
     final static String destination = "C:\\Users\\ancho\\Desktop\\avatar\\";

@@ -1,5 +1,8 @@
 package anchor.common.status;
 
+/**
+ * @author Anchor
+ */
 public enum DefaultStatus implements StatusCode {
 
     SUCCESS(200, "Operation Success"),

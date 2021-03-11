@@ -4,6 +4,9 @@ import anchor.mybatis.object.vo.MobileResponse;
 import anchor.mybatis.object.vo.QRCodeResponse;
 import org.springframework.http.ResponseEntity;
 
+/**
+ * @author Anchor
+ */
 public interface CommonService {
 
     void exportAllUsers();

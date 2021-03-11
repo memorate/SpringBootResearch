@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.time.Year;
 
+/**
+ * @author Anchor
+ */
 @Data
 public class YearTable {
 

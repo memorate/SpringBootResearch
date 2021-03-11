@@ -10,6 +10,9 @@ import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author Anchor
+ */
 public class HttpJob extends QuartzJobBean {
 
     @Resource

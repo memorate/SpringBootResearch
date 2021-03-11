@@ -11,6 +11,9 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author Anchor
+ */
 @Slf4j
 @Service
 public class UserDetailServiceImpl implements UserDetailService {

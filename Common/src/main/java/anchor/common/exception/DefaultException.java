@@ -3,6 +3,9 @@ package anchor.common.exception;
 import anchor.common.status.DefaultStatus;
 import anchor.common.status.StatusCode;
 
+/**
+ * @author Anchor
+ */
 public final class DefaultException extends RuntimeException {
 
     private static final long serialVersionUID = -8618092465858207782L;
