@@ -1,8 +1,8 @@
 package anchor.mybatis.service;
 
-import anchor.mybatis.entity.Customer;
 import anchor.mybatis.mapper.CustomerMapper;
-import anchor.mybatis.query.CustomerQuery;
+import anchor.mybatis.object.entity.Customer;
+import anchor.mybatis.object.qo.CustomerQuery;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

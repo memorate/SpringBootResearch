@@ -1,8 +1,8 @@
 package anchor.mybatis.service.impl;
 
-import anchor.mybatis.constant.UserColumn;
-import anchor.mybatis.entity.User;
 import anchor.mybatis.mapper.UserMapper;
+import anchor.mybatis.object.constant.UserColumn;
+import anchor.mybatis.object.entity.User;
 import anchor.mybatis.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

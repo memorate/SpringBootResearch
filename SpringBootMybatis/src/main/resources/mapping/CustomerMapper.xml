@@ -3,7 +3,7 @@
 <mapper namespace="anchor.mybatis.mapper.CustomerMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="anchor.mybatis.entity.Customer">
+    <resultMap id="BaseResultMap" type="anchor.mybatis.object.entity.Customer">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="age" property="age"/>
@@ -37,7 +37,7 @@
         </foreach>
     </insert>
 
-    <select id="listByQuery" resultType="anchor.mybatis.entity.Customer">
+    <select id="listByQuery" resultType="anchor.mybatis.object.entity.Customer">
         select
         <include refid="Base_Column_List"/>
         from customer
@@ -49,7 +49,7 @@
         order by name
     </select>
 
-    <select id="findByTime" resultType="anchor.mybatis.entity.Customer">
+    <select id="findByTime" resultType="anchor.mybatis.object.entity.Customer">
         select
         <include refid="Base_Column_List"/>
         from customer

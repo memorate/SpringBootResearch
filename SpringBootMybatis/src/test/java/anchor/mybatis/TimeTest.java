@@ -1,7 +1,7 @@
 package anchor.mybatis;
 
-import anchor.mybatis.entity.*;
 import anchor.mybatis.mapper.*;
+import anchor.mybatis.object.entity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

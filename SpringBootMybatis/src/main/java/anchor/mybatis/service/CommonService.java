@@ -1,7 +1,7 @@
 package anchor.mybatis.service;
 
-import anchor.mybatis.vo.MobileResponse;
-import anchor.mybatis.vo.QRCodeResponse;
+import anchor.mybatis.object.vo.MobileResponse;
+import anchor.mybatis.object.vo.QRCodeResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface CommonService {

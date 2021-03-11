@@ -1,6 +1,6 @@
 package anchor.mybatis.mapper;
 
-import anchor.mybatis.entity.User;
+import anchor.mybatis.object.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

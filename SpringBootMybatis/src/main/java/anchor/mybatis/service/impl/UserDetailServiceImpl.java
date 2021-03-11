@@ -1,8 +1,8 @@
 package anchor.mybatis.service.impl;
 
-import anchor.mybatis.constant.UserDetailColumn;
-import anchor.mybatis.entity.UserDetail;
 import anchor.mybatis.mapper.UserDetailMapper;
+import anchor.mybatis.object.constant.UserDetailColumn;
+import anchor.mybatis.object.entity.UserDetail;
 import anchor.mybatis.service.UserDetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

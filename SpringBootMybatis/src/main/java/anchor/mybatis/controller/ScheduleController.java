@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
-import static anchor.mybatis.constant.ScheduleConstant.TRIGGER_GROUP;
+import static anchor.mybatis.object.constant.ScheduleConstant.TRIGGER_GROUP;
 
 
 @RestController

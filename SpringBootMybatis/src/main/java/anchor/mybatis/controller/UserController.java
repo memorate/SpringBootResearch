@@ -1,6 +1,6 @@
 package anchor.mybatis.controller;
 
-import anchor.mybatis.entity.User;
+import anchor.mybatis.object.entity.User;
 import anchor.mybatis.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package anchor.mybatis.mapper;
 
-import anchor.mybatis.entity.Customer;
-import anchor.mybatis.query.CustomerQuery;
+import anchor.mybatis.object.entity.Customer;
+import anchor.mybatis.object.qo.CustomerQuery;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

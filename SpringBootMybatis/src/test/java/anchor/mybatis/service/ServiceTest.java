@@ -1,12 +1,12 @@
 package anchor.mybatis.service;
 
-import anchor.mybatis.constant.UserColumn;
-import anchor.mybatis.entity.User;
-import anchor.mybatis.entity.UserDetail;
 import anchor.mybatis.mapper.UserDetailMapper;
 import anchor.mybatis.mapper.UserMapper;
-import anchor.mybatis.vo.MobileResponse;
-import anchor.mybatis.vo.QRCodeResponse;
+import anchor.mybatis.object.constant.UserColumn;
+import anchor.mybatis.object.entity.User;
+import anchor.mybatis.object.entity.UserDetail;
+import anchor.mybatis.object.vo.MobileResponse;
+import anchor.mybatis.object.vo.QRCodeResponse;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.junit.Assert;

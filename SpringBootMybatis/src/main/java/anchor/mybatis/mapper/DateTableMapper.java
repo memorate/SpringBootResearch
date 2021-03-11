@@ -1,6 +1,6 @@
 package anchor.mybatis.mapper;
 
-import anchor.mybatis.entity.DateTable;
+import anchor.mybatis.object.entity.DateTable;
 import org.springframework.stereotype.Repository;
 
 @Repository

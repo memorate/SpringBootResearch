@@ -1,7 +1,7 @@
 package anchor.mybatis.controller;
 
 import anchor.common.response.BaseResponse;
-import anchor.mybatis.entity.Customer;
+import anchor.mybatis.object.entity.Customer;
 import anchor.mybatis.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PutMapping;

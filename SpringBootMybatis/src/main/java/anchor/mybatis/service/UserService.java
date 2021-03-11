@@ -1,6 +1,6 @@
 package anchor.mybatis.service;
 
-import anchor.mybatis.entity.User;
+import anchor.mybatis.object.entity.User;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;

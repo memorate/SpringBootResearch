@@ -1,7 +1,7 @@
 package anchor.mybatis.service.impl;
 
-import anchor.mybatis.entity.Customer;
 import anchor.mybatis.mapper.CustomerMapper;
+import anchor.mybatis.object.entity.Customer;
 import anchor.mybatis.service.CustomerService;
 import org.springframework.stereotype.Service;
 

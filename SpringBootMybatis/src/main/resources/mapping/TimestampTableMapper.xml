@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="anchor.mybatis.mapper.TimestampTableMapper">
-    <resultMap id="baseResultMap" type="anchor.mybatis.entity.TimestampTable">
+    <resultMap id="baseResultMap" type="anchor.mybatis.object.entity.TimestampTable">
         <id column="timestamp_one" property="timestampOne"/>
         <result column="timestamp_two" property="timestampTwo"/>
         <result column="timestamp_three" property="timestampThree"/>
@@ -14,7 +14,7 @@
         timestamp_one, timestamp_two, timestamp_three, timestamp_four, timestamp_five, timestamp_six
     </sql>
 
-    <insert id="insert" parameterType="anchor.mybatis.entity.TimestampTable">
+    <insert id="insert" parameterType="anchor.mybatis.object.entity.TimestampTable">
         insert into timestamp_table
         (timestamp_one, timestamp_two, timestamp_three, timestamp_four, timestamp_five, timestamp_six)
         values

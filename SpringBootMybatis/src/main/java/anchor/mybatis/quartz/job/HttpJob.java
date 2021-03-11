@@ -1,7 +1,7 @@
 package anchor.mybatis.quartz.job;
 
+import anchor.mybatis.object.vo.MobileResponse;
 import anchor.mybatis.service.CommonService;
-import anchor.mybatis.vo.MobileResponse;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;

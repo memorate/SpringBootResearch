@@ -30,7 +30,7 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  type-aliases-package: anchor.mybatis.entity
+  type-aliases-package: anchor.mybatis.object.entity
   mapper-locations: classpath:mapping/*Mapper.xml
 
 logging:

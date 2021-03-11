@@ -1,6 +1,6 @@
 package anchor.mybatis.service;
 
-import anchor.mybatis.entity.Customer;
+import anchor.mybatis.object.entity.Customer;
 
 import java.util.List;
 
