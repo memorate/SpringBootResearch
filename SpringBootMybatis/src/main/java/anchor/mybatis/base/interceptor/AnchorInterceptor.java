@@ -20,9 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  *   doFilter1() ——> doFilter2() ——> preHandle1() ——> preHandle2() ——> Controller  ——> postHandle1()
  *   ——> postHandle2() ——> afterCompletion1() ——>  afterCompletion2() ——> doFilter1() ——> doFilter2()
  *      PS: doFilter() 多次出现是指 chain.doFilter(request, response) 之前和之后的代码
- * 4.如果某个 preHandle 返回了 false，则请求直接结束
- * 5.{@link HandlerInterceptorAdapter} 相较于 {@link HandlerInterceptor} 多了一个 afterConcurrentHandlingStarted() 方法，
+ * 4.如果某个 preHandle() 返回了 false，则请求直接结束
+ * 5.如果 Controller 中发生异常，则不会执行 preHandle()，直接执行 afterCompletion()
+ * 6.{@link HandlerInterceptorAdapter} 相较于 {@link HandlerInterceptor} 多了一个 afterConcurrentHandlingStarted() 方法，
  *   它会在异步请求的情况下代替 postHandle() 和 afterCompletion()
+ * 7.拦截器无法获取请求的参数，只能获取请求地址，和处理请求的 Controller
  */
 @Slf4j
 public class AnchorInterceptor implements HandlerInterceptor {
@@ -48,6 +50,10 @@ public class AnchorInterceptor implements HandlerInterceptor {
             log.info("CustomInterceptor1 postHandle info: request result = " + modelAndView);
         }
 
+        /**
+         * 如果没有异常，ex 为 null
+         * 如果异常被 @ControllerAdvice 捕获，ex 也为 null
+         */
         @Override
         public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
             long elapse = System.currentTimeMillis() - (long) request.getAttribute("startFilter1Time");

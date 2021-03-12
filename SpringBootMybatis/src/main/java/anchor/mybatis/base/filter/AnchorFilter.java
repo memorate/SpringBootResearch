@@ -14,6 +14,7 @@ import java.io.IOException;
  * 1.Filter 是基于函数回调来实现的
  * 2.在自定义的 Filter 中无法 @Resource 注入 Bean，原因是：
  *     SpringBoot 启动时各组件的初始化顺序是 Listener ——> Filter ——> Servelet，普通 Bean 的初始化是在 Servelet 中
+ * 3.Filter 无法获取处理请求的 Controller、请求参数，只能获取到请求地址
  */
 @Slf4j
 public class AnchorFilter {
