@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Aspect
 @Component
+@SuppressWarnings("all")
 public class ResultRecorderAspect {
     @Around("CommonPointcut.resultRecorder()")
     public Object resultRecord(ProceedingJoinPoint joinPoint) throws Throwable {
