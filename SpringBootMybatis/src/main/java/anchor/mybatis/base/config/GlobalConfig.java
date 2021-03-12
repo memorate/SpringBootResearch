@@ -12,6 +12,8 @@ import java.util.Collections;
 
 /**
  * @author Anchor
+ *
+ * 全局普通 Bean 配置类
  */
 @Configuration
 public class GlobalConfig {
@@ -27,10 +29,10 @@ public class GlobalConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<Filter> anchorFilter1(){
+    public FilterRegistrationBean<Filter> customFilter1(){
         FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new AnchorFilter.CustomerFilter1());
-        registrationBean.setName("CustomerFilter1");
+        registrationBean.setFilter(new AnchorFilter.CustomFilter1());
+        registrationBean.setName("CustomFilter1");
         // 过滤器的顺序
         registrationBean.setOrder(100);
         // 过滤器作用的请求地址，"/*" 代表所有
@@ -38,11 +40,14 @@ public class GlobalConfig {
         return registrationBean;
     }
 
+    /**
+     * 注册了两个自定义 Filter，来观察他们的 order
+     */
     @Bean
-    public FilterRegistrationBean<Filter> anchorFilter2(){
+    public FilterRegistrationBean<Filter> customFilter2(){
         FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new AnchorFilter.CustomerFilter2());
-        registrationBean.setName("CustomerFilter2");
+        registrationBean.setFilter(new AnchorFilter.CustomFilter2());
+        registrationBean.setName("CustomFilter2");
         registrationBean.setOrder(5);
         registrationBean.setUrlPatterns(Collections.singletonList("/*"));
         return registrationBean;

@@ -45,19 +45,24 @@ public class CommonController {
     }
 
     @GetMapping("/aopTest")
-    public BaseResponse<Boolean> aopTest(String aa, String bb){
+    public BaseResponse<Boolean> aopTest(String aa, String bb) {
         return new BaseResponse<>(commonService.aopTest());
     }
 
     @GetMapping
-    public BaseResponse<Boolean> annotationTest(){
+    public BaseResponse<Boolean> annotationTest() {
         log.info("Executing annotationTest()...");
-        return new BaseResponse<>(true);
+        return new BaseResponse<>(Boolean.TRUE);
     }
 
     @PostMapping("/validate")
-    public BaseResponse<Boolean> validate(@Validated(InsertGroup.class) @RequestBody Validation vo){
+    public BaseResponse<Boolean> validate(@Validated(InsertGroup.class) @RequestBody Validation vo) {
         log.info(vo.toString());
-        return new BaseResponse<>(true);
+        return new BaseResponse<>(Boolean.TRUE);
+    }
+
+    @GetMapping("asyn")
+    public BaseResponse<Boolean> asyncRequest() {
+        return new BaseResponse<>(Boolean.TRUE);
     }
 }
