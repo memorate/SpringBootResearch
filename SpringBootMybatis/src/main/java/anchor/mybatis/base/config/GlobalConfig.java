@@ -1,6 +1,7 @@
 package anchor.mybatis.base.config;
 
 import anchor.common.handler.GlobalExceptionHandler;
+import anchor.mybatis.base.AnchorBean;
 import anchor.mybatis.base.filter.AnchorFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -24,12 +25,12 @@ public class GlobalConfig {
     }
 
     @Bean
-    public GlobalExceptionHandler globalExceptionHandler(){
+    public GlobalExceptionHandler globalExceptionHandler() {
         return new GlobalExceptionHandler();
     }
 
     @Bean
-    public FilterRegistrationBean<Filter> customFilter1(){
+    public FilterRegistrationBean<Filter> customFilter1() {
         FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new AnchorFilter.CustomFilter1());
         registrationBean.setName("CustomFilter1");
@@ -44,13 +45,20 @@ public class GlobalConfig {
      * 注册了两个自定义 Filter，来观察他们的 order
      */
     @Bean
-    public FilterRegistrationBean<Filter> customFilter2(){
+    public FilterRegistrationBean<Filter> customFilter2() {
         FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new AnchorFilter.CustomFilter2());
         registrationBean.setName("CustomFilter2");
         registrationBean.setOrder(5);
         registrationBean.setUrlPatterns(Collections.singletonList("/*"));
         return registrationBean;
+    }
+
+    @Bean(initMethod = "myConstruct", destroyMethod = "myDestroy")
+    public AnchorBean anchorBean() {
+        AnchorBean bean = new AnchorBean();
+        bean.setParam("My name is AnchorBean");
+        return bean;
     }
 
 //    @Bean

@@ -1,6 +1,7 @@
 package anchor.mybatis.controller;
 
 import anchor.common.response.BaseResponse;
+import anchor.mybatis.base.AnchorBean;
 import anchor.mybatis.base.aop.ResultRecorder;
 import anchor.mybatis.base.validation.InsertGroup;
 import anchor.mybatis.object.vo.MobileResponse;
@@ -22,6 +23,9 @@ import javax.annotation.Resource;
 public class CommonController {
     @Resource
     private CommonService commonService;
+
+    @Resource
+    private AnchorBean anchorBean;
 
     @GetMapping("/usersExcel")
     public void exportUsers() {
@@ -64,5 +68,10 @@ public class CommonController {
     @GetMapping("asyn")
     public BaseResponse<Boolean> asyncRequest() {
         return new BaseResponse<>(Boolean.TRUE);
+    }
+
+    @GetMapping("anchorBean")
+    public BaseResponse<String> getAnchorBeanParam(){
+        return new BaseResponse<>(anchorBean.getParam());
     }
 }
