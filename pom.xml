@@ -34,6 +34,7 @@
         <pagehelper-starter.version>1.2.13</pagehelper-starter.version>
         <jackson-databind.version>2.11.1</jackson-databind.version>
         <anchor.common.version>2.0</anchor.common.version>
+        <cglib.version>3.3.0</cglib.version>
     </properties>
 
     <dependencies>
@@ -83,6 +84,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
         </dependency>
     </dependencies>
 </project>

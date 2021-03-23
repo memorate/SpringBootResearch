@@ -44,11 +44,11 @@ public class AnchorBean implements BeanNameAware, BeanFactoryAware,
     private String param;
 
     static {
-        log.info("----1.AnchorBean: static code block executing...");
+        System.out.println("----1.AnchorBean: static code block executing...");
     }
 
     {
-        log.info("----2.AnchorBean: normal code block executing...");
+        System.out.println("----2.AnchorBean: normal code block executing...");
     }
 
     public AnchorBean() {

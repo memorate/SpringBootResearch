@@ -1,10 +1,15 @@
 package anchor.common.proxy;
 
-public class RentProxy implements Rent{
+import anchor.common.proxy.subject.Rent;
 
-    private Rent rent;
+/**
+ * @author Anchor
+ */
+public class StaticRentProxy implements Rent {
 
-    public RentProxy(Rent rent) {
+    private final Rent rent;
+
+    public StaticRentProxy(Rent rent) {
         this.rent = rent;
     }
 

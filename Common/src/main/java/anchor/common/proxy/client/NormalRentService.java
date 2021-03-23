@@ -1,6 +1,11 @@
-package anchor.common.proxy;
+package anchor.common.proxy.client;
+
+import anchor.common.proxy.StaticRentProxy;
+import anchor.common.proxy.subject.Rent;
 
 /**
+ * 被代理的普通租房服务
+ *
  * @author Anchor
  */
 public class NormalRentService implements Rent {
@@ -11,6 +16,6 @@ public class NormalRentService implements Rent {
 
     @Override
     public Rent getProxy() {
-        return new RentProxy(this);
+        return new StaticRentProxy(this);
     }
 }
