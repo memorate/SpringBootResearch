@@ -35,6 +35,7 @@ import javax.annotation.PreDestroy;
  *
  *  上面是 SpringBoot 中 Bean 的核心接口和生命周期，但是除上述之外，还有另外的初始化过程涉及的接口，详见：
  *     https://juejin.cn/post/6917398146268004365
+ *  (或者见{@link BeanFactory} 的注释)
  */
 @Slf4j
 public class AnchorBean implements BeanNameAware, BeanFactoryAware,
