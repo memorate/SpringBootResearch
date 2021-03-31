@@ -2,4 +2,4 @@
 /SpringBootMybatis/target/
 /.idea/
 target/
-*.iml
+**/*.iml

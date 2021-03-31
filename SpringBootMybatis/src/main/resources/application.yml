@@ -33,6 +33,11 @@ mybatis-plus:
   type-aliases-package: anchor.mybatis.object.entity
   mapper-locations: classpath:mapping/*Mapper.xml
 
+rocketmq:
+  name-server: 10.16.95.167:9876;10.16.95.168:9876;10.16.95.169:9876
+  producer:
+    group: Anchor-Produce-Group
+
 logging:
   level:
     anchor.mybatis.mapper: debug
