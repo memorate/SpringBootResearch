@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -52,9 +53,9 @@ public class CommonController implements InitializingBean {
     }
 
     @PreDestroy
-    public void print(){
-        log.info(">> Producer1 produce msg num = {}", COUNTER1.get());
-        log.info(">> Producer2 produce msg num = {}", COUNTER2.get());
+    public void print() {
+        log.info(">> CommonController.Producer1 produce msg num = {}", COUNTER1.get());
+        log.info(">> CommonController.Producer2 produce msg num = {}", COUNTER2.get());
     }
 
     @GetMapping("/usersExcel")
@@ -111,8 +112,9 @@ public class CommonController implements InitializingBean {
         for (int i = 0; i < threadSize; i++) {
             executor.execute(() -> {
                 for (int j = 0; j < eachSize; j++) {
-                    rocketMqTemplate.sendOneWay(MQ_TOPIC1, MessageBuilder.withPayload("Anchor-Message-1-" + j).build());
-                    COUNTER1.incrementAndGet();
+                    rocketMqTemplate.sendOneWay(MQ_TOPIC1,
+                            MessageBuilder.withPayload("Anchor-Message-1-" + COUNTER1.incrementAndGet() + ", " + LocalDateTime.now())
+                                    .build());
                 }
             });
         }
@@ -125,8 +127,9 @@ public class CommonController implements InitializingBean {
         for (int i = 0; i < threadSize; i++) {
             executor.execute(() -> {
                 for (int j = 0; j < eachSize; j++) {
-                    rocketMqTemplate.sendOneWay(MQ_TOPIC2, MessageBuilder.withPayload("Anchor-Message-2-" + j).build());
-                    COUNTER2.incrementAndGet();
+                    rocketMqTemplate.sendOneWay(MQ_TOPIC2,
+                            MessageBuilder.withPayload("Anchor-Message-2-" + COUNTER2.incrementAndGet() + ", " + LocalDateTime.now())
+                                    .build());
                 }
             });
         }
